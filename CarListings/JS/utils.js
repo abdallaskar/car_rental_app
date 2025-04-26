@@ -73,8 +73,8 @@ function createCardDetails(car) {
         <p><strong>Minimum Rental Period:</strong> <i>Minimum rental period is 2 days. Late returns will incur additional charges.</i><br>
         <strong>Late Returns: </strong> <i> Additional fees will apply for vehicles returned after the agreed return time/date.</p>
         <p> </i></p>
-        <div class="d-flex justify-content-center mt-3">
-          <button class="btn btn-primary">Book Now</button>
+        <div class="bookbtn-container d-flex justify-content-center mt-3">
+          <button onclick="bookNow()" class="bookbtn btn btn-primary">Book Now</button>
         </div>
         </div>
       </div>
@@ -89,3 +89,7 @@ function createCardDetails(car) {
       `;
 
 }
+// a function that opens booking form page .
+// window.bookNow = function() {
+//   window.open("../Booking/booking.html");
+// }
