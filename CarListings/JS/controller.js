@@ -8,12 +8,13 @@ class Controller {
         this.cars = []; // Array to hold car objects
     }
     // Method to create a new car object
-    createCar(car_id, url_img, brand, model, type, description, rental_price) {
+    createCar(car_id, url_img, brand, model, type, year, description, rental_price) {
         const existingCar = this.cars.findIndex(function (element) {
             return element.car_id === car_id;
         });
         if (existingCar == -1) {
-            const newCar = new Car(car_id, url_img, brand, model, type, description, rental_price);
+            const newCar = new Car(car_id, url_img, brand, model, type, year, description, rental_price);
+            // this.addCar(newCar); // Add the new car object to the array
             return newCar;
         }
         else {
@@ -38,7 +39,12 @@ class Controller {
         return this.cars;
     }
 
-
+    markCarAsBooked(car_id) {
+        const index = this.cars.findIndex(car => car.car_id === car_id);
+        if (index !== -1) {
+            this.cars[index].setBooked(true);
+        }
+    }
     findCarById(car_id) {
         return this.cars.find(car => car.car_id === car_id);
     }
@@ -46,6 +52,23 @@ class Controller {
     getCarsByBrandName(brand) {
         return this.cars.filter(function (element) {
             return brand.toLowerCase() === element.brand.toLowerCase() ? element : null;
+        });
+    }
+    // Method to get car objects by Type
+    getCarsByType(type) {
+        return this.cars.filter(function (element) {
+            return type.toLowerCase() === element.type.toLowerCase() ? element : null;
+        });
+    }
+    // Methot to get cars by avaliblity
+    getCarsAvalible() {
+        return this.cars.filter(function (element) {
+            return element.booked === false ? element : null;
+        });
+    }
+    getCarsNotAvalible() {
+        return this.cars.filter(function (element) {
+            return element.booked === true ? element : null;
         });
     }
     // Method to sort car objects by rental price in ascending order
