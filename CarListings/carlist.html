@@ -60,20 +60,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
-            <!-- Search form -->
-            <form class="d-flex mx-auto" role="search">
-                <input class="form-control me-2 search-input" type="search" placeholder="Search by brand name"
-                    aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Search</button>
-            </form>
+        <div class="collapse navbar-collapse justify-content-around align-items-center" id="navbarContent">
 
-            <!-- Sort dropdown -->
-            <div class="dropdown">
+            <form class="d-flex mx-3 flex-grow-1 form" role="search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Search by car type"
+                    aria-label="Search">
+                <button class="btn btn-outline-primary search_btn" type="submit">Search</button>
+            </form>
+            <div class="dropdown mx-3">
                 <select class="form-select" id="sortSelect" aria-label="Sort by">
                     <option selected disabled>Sort by</option>
                     <option value="1">Price: Low to High</option>
                     <option value="2">Price: High to Low</option>
+                </select>
+            </div>
+
+            <div class="dropdown mx-3">
+                <select class="form-select" id="Availability_dropdown" aria-label="Availability">
+                    <option selected disabled>Availability</option>
+                    <option value="1">All Cars</option>
+                    <option value="2">Available Cars</option>
+                    <option value="3">Not Available Cars</option>
                 </select>
             </div>
         </div>
@@ -97,7 +104,6 @@
             <!-- <div class="modal fade" id="1" tabindex="-1" aria-labelledby="cardModalLabel1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content">
-                     
                         <div class="modal-header">
                             <h5 class="modal-title" id="cardModalLabel1">Product 1 Details</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -124,7 +130,6 @@
                     </div>
                 </div>
             </div> -->
-
             <!-- Add more cards here... -->
         </div>
     </div>
