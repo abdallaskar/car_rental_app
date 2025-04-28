@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Car Rental - Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img
+              src="/Authentication/imgs/logo3.jpg"
+              alt="Car Rental Logo"
+              class="img-fluid"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/CarListings/carlist.html"
+                  >Car List</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Contact Us/contactUs.html"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+            <div class="d-flex">
+              <a
+                href="/Authentication/login.html"
+                class="btn btn-outline-primary"
+                >Login/Register</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="container text-center">
+          <h1 class="display-4 fw-bold mb-4">Welcome to Car Rental</h1>
+          <p class="lead mb-5">
+            Find your perfect car to rent at best prices. Fast booking, easy
+            driving!
+          </p>
+          <button class="btn btn-primary btn-lg" onclick="viewCars()">
+            View Available Cars
+          </button>
+        </div>
+      </section>
+
+      <section class="container my-5">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-speedometer2 fs-1 text-primary mb-3"></i>
+                <h3 class="h4">Wide Selection</h3>
+                <p class="text-muted">
+                  Choose from our extensive fleet of vehicles for every need and
+                  budget.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-cash-coin fs-1 text-primary mb-3"></i>
+                <h3 class="h4">Best Prices</h3>
+                <p class="text-muted">
+                  Competitive rates with no hidden fees. Price match guarantee.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-headset fs-1 text-primary mb-3"></i>
+                <h3 class="h4">24/7 Support</h3>
+                <p class="text-muted">
+                  Our customer service team is always ready to assist you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center">
+      <div class="container">
+        <p class="mb-0">© 2025 Car Rental. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function viewCars() {
+        window.location.href = "/CarListings/carlist.html";
+      }
+    </script>
+  </body>
+</html>
