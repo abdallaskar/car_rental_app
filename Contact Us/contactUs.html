@@ -13,12 +13,19 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" href="contactUs.css" />
+    <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html">CarRental</a>
+        <a class="navbar-brand" href="/home.html">
+          <img
+            src="/Authentication/imgs/logo3.jpg"
+            alt="Car Rental Logo"
+            class="img-fluid"
+          />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -28,17 +35,24 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link active" href="/home.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cars</a>
+              <a class="nav-link" href="#">Car List</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Contact</a>
+              <a class="nav-link" href="/Contact Us/contactUs.html"
+                >Contact Us</a
+              >
             </li>
           </ul>
+          <div class="d-flex">
+            <a href="/Authentication/login.html" class="btn btn-outline-primary"
+              >Login/Register</a
+            >
+          </div>
         </div>
       </div>
     </nav>

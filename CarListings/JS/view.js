@@ -2,11 +2,16 @@ import { renderAllCars } from "./utils.js";
 import handleCar from "./controller-instance.js";
 
 // Select elements using dom
-const mainContainer = document.querySelector(".container #cardContainer");
+
+const mainContainer = document.querySelector(
+  "#mainCarContainer #cardContainer"
+);
+
 const dropDownSort = document.querySelectorAll(".dropdown #sortSelect");
 const dropDownAvailable = document.querySelectorAll(".dropdown #Availability_dropdown");
 const searchInput = document.querySelector(".form .search-input");
 const searchButton = document.querySelector(".form .search_btn");
+
 
 
 // Render initial cars

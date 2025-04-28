@@ -1,178 +1,102 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
 }
 
 body {
-  color: #222;
-  background-color: #f9f9f9;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-.navbar {
-  position: sticky;
-  top: 0;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 50px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  z-index: 1000;
-  flex-wrap: wrap;
-}
-
-.logo img {
-  height: 80px;
+.navbar-brand img {
+  max-width: 80px;
   border-radius: 50%;
 }
 
-.nav-links{
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-links ul {
-  display: flex;
-  gap: 25px;
-  list-style: none;
-}
-
-.nav-links ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 16px;
-  transition: color 0.3s;
-}
-
-.nav-links ul li a:hover,
-.nav-links ul li a.active {
-  color: #007BFF;
-}
-
-.login-btn {
-  background-color: #007BFF;
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("/Authentication/imgs/background.jpg") no-repeat center center;
+  background-size: cover;
   color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  padding: 80px 0;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 40px;
 }
 
-.login-btn:hover {
-  background-color: #0056b3;
+.booking-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-
-.hero {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 50px 20px;
-  background: #fff;
+.form-control,
+.form-select {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
 }
 
-.hero-text {
-  max-width: 50%;
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.hero-text h1 {
-  font-size: 48px;
-  color: #1a1a1a;
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.find-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 300px;
+}
+
+.find-button:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.feature-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 15px;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  color: var(--primary-color);
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
-.hero-text p {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-.hero-text button {
-  background-color: #007BFF;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.hero-text button:hover {
-  background-color: #0056b3;
-}
-
-.hero-image img {
-  width: 600px;
-  height: auto;
-  border-radius: 10px;
-}
-
-
 footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #ffffff;
-  font-size: 14px;
-  color: #222;
-  border-top: 1px solid #ddd;
-  height:83px;
+  background-color: #f8f9fa;
+  padding: 30px 0;
+  margin-top: 60px;
 }
 
-footer p{
-  margin-top: 20px;
-}
-
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-  }
-
-  .nav-links {
-    order: 2;
-    width: 100%;
-  }
-
-  .nav-links ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .logo {
+@media (max-width: 992px) {
+  .hero-content {
     order: 1;
+    margin-bottom: 40px;
   }
 
-  .login-btn {
-    order: 3;
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .hero-text {
-    max-width: 100%;
-  }
-
-  .hero-image img {
-    max-width: 300px;
+  .booking-form {
+    order: 2;
   }
 }

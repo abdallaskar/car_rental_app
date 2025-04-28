@@ -10,7 +10,20 @@ class Controller {
     const storedCars = localStorage.getItem("cars");
     if (storedCars) {
       const parsedCars = JSON.parse(storedCars);
-      return parsedCars.map((car) => new Car(car.car_id, car.url_img, car.brand, car.model, car.type, car.rental_price, car.year, car.description, car.booked));
+      return parsedCars.map(
+        (car) =>
+          new Car(
+            car.car_id,
+            car.url_img,
+            car.brand,
+            car.model,
+            car.type,
+            car.rental_price,
+            car.year,
+            car.description,
+            car.booked
+          )
+      );
     }
     return [];
   }
@@ -21,10 +34,26 @@ class Controller {
   }
 
   // Method to create a new car object
-  createCar(car_id, url_img, brand, model, type, rental_price, year, description) {
-    const existingCar = this.cars.findIndex((element) => element.car_id === car_id);
+  createCar(
+    car_id,
+    url_img,
+    brand,
+    model,
+    type,
+    rental_price,
+    year,
+    description
+  ) {
+    const existingCar = this.cars.findIndex(
+      (element) => element.car_id === car_id
+    );
     if (existingCar === -1) {
-      const newCar = new Car(car_id, url_img, brand, model, type,
+      const newCar = new Car(
+        car_id,
+        url_img,
+        brand,
+        model,
+        type,
         rental_price,
         year,
         description

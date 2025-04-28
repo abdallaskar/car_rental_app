@@ -17,69 +17,55 @@
     />
     <link rel="stylesheet" href="CSS/global.css" />
     <link rel="stylesheet" href="CSS/style.css" />
+
+    <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
+
+    <link rel="stylesheet" href="../Booking/booking.css" />
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+      <div class="container">
+        <a class="navbar-brand" href="/home.html">
+          <img
+            src="/Authentication/imgs/logo3.jpg"
+            alt="Car Rental Logo"
+            class="img-fluid"
+          />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          data-bs-target="#navbarNav"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" href="/home.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Car List</a>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <li class="nav-item">
+              <a class="nav-link" href="/Contact Us/contactUs.html"
+                >Contact Us</a
               >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
             </li>
           </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          <div class="d-flex">
+            <a href="/Authentication/login.html" class="btn btn-outline-primary"
+              >Login/Register</a
+            >
+          </div>
         </div>
       </div>
     </nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+    <nav
+      class="container navbar navbar-expand-lg navbar-light bg-light px-3 mt-3"
+    >
       <a class="navbar-brand" href="#">My Store</a>
       <button
         class="navbar-toggler"
@@ -129,141 +115,15 @@
     </nav>
 
     <!-- Cards Section -->
-    <div class="container my-4">
-      <div id="cardContainer" class="row g-4">
-        <!-- Car Example  -->
-        <!-- <div class="col-md-4">
-                <div class="card h-100 shadow-sm card-hover" role="button" data-bs-toggle="modal" data-bs-target="#1">
-                    <img src="Images/1.jpg" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 1</h5>
-                        <p class="card-text">Short description of product 1.</p>
-                    </div>
-                </div>
-            </div> -->
-        <!-- Car Details  -->
-        <!-- Modal for Card 1 -->
-        <!-- <div class="modal fade" id="1" tabindex="-1" aria-labelledby="cardModalLabel1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="cardModalLabel1">Product 1 Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-body">
-                            <div class="row g-3 align-items-center">
-
-                                <div class="col-md-6">
-                                    <img src="Images/1.jpg" alt="Product 1" class="img-fluid rounded">
-                                </div>
-
-
-                                <div class="col-md-6">
-                                    <h4>Awesome Product 1</h4>
-                                    <p>This is a detailed description of the product. You can add price, features, and
-                                        more info
-                                        here.</p>
-                                    <p><strong>Price:</strong> $99.99</p>
-                                    <button class="btn btn-primary mt-2">Book Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        <!-- Add more cards here... -->
-      </div>
+    <div id="mainCarContainer" class="container my-4">
+      <div id="cardContainer" class="row g-4"></div>
     </div>
-    <!-- <section class="cards">
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 17rem;">
-            <img src="Images/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </section> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
-    <script src="/AdminDashboard/script.js" type="module"></script>
     <script src="JS/view.js" type="module"></script>
   </body>
 </html>
