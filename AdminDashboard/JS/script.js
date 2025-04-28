@@ -1,12 +1,6 @@
-import {
-  renderCarsTable,
-  renderDashboardStats,
-  renderBookingsTable,
-} from "./utils.js";
-
-import handleCar from "../CarListings/JS/controller-instance.js";
-
-import { renderAllCars } from "../CarListings/JS/utils.js";
+import { renderCarsTable, renderDashboardStats, renderBookingsTable } from "./utils.js";
+import handleCar from "../../CarListings/JS/controller-instance.js";
+import { InitializeStaticCars } from "./adminController.js";
 
 // DOM Elements
 const sidebarToggle = document.getElementById("sidebarToggle");
@@ -17,89 +11,23 @@ const sections = document.querySelectorAll(".container-fluid");
 const totalCarsElement = document.getElementById("totalCars");
 const availableCarsElement = document.getElementById("availableCars");
 const bookedCarsElement = document.getElementById("bookedCars");
-const recentActivityTable = document
-  .getElementById("recentActivity")
-  .querySelector("tbody");
+const recentActivityTable = document.getElementById("recentActivity").querySelector("tbody");
 const carsTable = document.getElementById("carsTable").querySelector("tbody");
-const bookingsTable = document
-  .getElementById("bookingsTable")
-  .querySelector("tbody");
+const bookingsTable = document.getElementById("bookingsTable").querySelector("tbody");
 const saveCarBtn = document.getElementById("saveCarBtn");
 const updateCarBtn = document.getElementById("updateCarBtn");
 const mainContainer = document.querySelector(".container #cardContainer");
 
-console.log(mainContainer);
-// Initialize handleCar
 
-if (handleCar.getAllCars().length === 0) {
-  const car1 = handleCar.createCar(
-    1,
-    "./Images/2.jpg",
-    "Toyota",
-    "Camry",
-    "Sedan",
-    30000,
-    "2022",
-    "A reliable sedan with a comfortable interior and advanced safety features."
-  );
-  const car2 = handleCar.createCar(
-    2,
-    "./Images/3.jpg",
-    "Honda",
-    "Civic",
-    "Sedan",
-    25000,
-    "2022",
-    "A compact car known for its reliability and fuel efficiency."
-  );
-  const car3 = handleCar.createCar(
-    3,
-    "./Images/4.jpg",
-    "Ford",
-    "Mustang",
-    "Coupe",
-    55000,
-    "2022",
-    "Sports car with a powerful engine and sleek design"
-  );
-  const car4 = handleCar.createCar(
-    4,
-    "./Images/5.jpg",
-    "Chevrolet",
-    "Impala",
-    "Sedan",
-    22000,
-    "2022",
-    "Spacious sedan with a comfortable interior."
-  );
-  handleCar.addCar(car1);
-  handleCar.addCar(car2);
-  handleCar.addCar(car3);
-  handleCar.addCar(car4);
-  handleCar.markCarAsBooked(2);
-}
+
+// Initialize handleCar instance with static default data ;
+InitializeStaticCars(handleCar);
+
 
 // Sample data for bookings (in a real app, this would come from a database)
 const bookings = [
-  {
-    id: 1,
-    carId: 2,
-    customer: "John Doe",
-    startDate: "2023-11-01",
-    endDate: "2023-11-05",
-    totalPrice: 1500,
-    status: "Active",
-  },
-  {
-    id: 2,
-    carId: 3,
-    customer: "Jane Smith",
-    startDate: "2023-11-10",
-    endDate: "2023-11-15",
-    totalPrice: 1250,
-    status: "Completed",
-  },
-];
+  { id: 1, carId: 2, customer: "John Doe", startDate: "2023-11-01", endDate: "2023-11-05", totalPrice: 1500, status: "Active", },
+  { id: 2, carId: 3, customer: "Jane Smith", startDate: "2023-11-10", endDate: "2023-11-15", totalPrice: 1250, status: "Completed", },];
 
 // Initialize the dashboard
 document.addEventListener("DOMContentLoaded", function () {
@@ -135,22 +63,18 @@ carsTable.addEventListener("click", function (e) {
 
 function loadRecentActivity() {
   recentActivityTable.innerHTML = "";
-
   // Sample recent activity (in a real app, this would come from a database)
   const activities = [
     { car: "Toyota Camry", status: "Booked", time: "2 hours ago" },
     { car: "Honda Civic", status: "Returned", time: "1 day ago" },
-    { car: "Ford Mustang", status: "Available", time: "2 days ago" },
-  ];
-
+    { car: "Ford Mustang", status: "Available", time: "2 days ago" },];
   activities.forEach((activity) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${activity.car}</td>
-      <td><span class="badge ${
-        activity.status === "Booked"
-          ? "bg-danger"
-          : activity.status === "Returned"
+      <td><span class="badge ${activity.status === "Booked"
+        ? "bg-danger"
+        : activity.status === "Returned"
           ? "bg-success"
           : "bg-primary"
       }">${activity.status}</span></td>
@@ -168,7 +92,6 @@ function setupEventListeners() {
       mainContent.classList.toggle("shrink");
     });
   }
-
   // Navigation links
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
@@ -200,9 +123,7 @@ function setupEventListeners() {
     const description = document.getElementById("carDescription").value;
 
     // Generate a new ID
-    const newId =
-      Math.max(...handleCar.getAllCars().map((car) => car.car_id), 0) + 1;
-
+    const newId = Math.max(...handleCar.getAllCars().map((car) => car.car_id), 0) + 1;
     try {
       const newCar = handleCar.createCar(
         newId,
@@ -231,7 +152,6 @@ function setupEventListeners() {
         bookedCarsElement
       );
       renderCarsTable(handleCar, carsTable);
-      renderAllCars(handleCar.getAllCars(), mainContainer);
       // Show success message
       alert("Car added successfully!");
     } catch (error) {

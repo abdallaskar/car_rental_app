@@ -16,7 +16,6 @@ class Car {
     setBooked(status) {
         this.booked = status;
     }
-
     isBooked() {
         return this.booked;
     }
