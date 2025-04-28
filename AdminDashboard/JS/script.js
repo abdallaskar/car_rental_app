@@ -1,4 +1,8 @@
-import { renderCarsTable, renderDashboardStats, renderBookingsTable } from "./utils.js";
+import {
+  renderCarsTable,
+  renderDashboardStats,
+  renderBookingsTable,
+} from "./utils.js";
 import handleCar from "../../CarListings/JS/controller-instance.js";
 import { InitializeStaticCars } from "./adminController.js";
 
@@ -11,23 +15,40 @@ const sections = document.querySelectorAll(".container-fluid");
 const totalCarsElement = document.getElementById("totalCars");
 const availableCarsElement = document.getElementById("availableCars");
 const bookedCarsElement = document.getElementById("bookedCars");
-const recentActivityTable = document.getElementById("recentActivity").querySelector("tbody");
+const recentActivityTable = document
+  .getElementById("recentActivity")
+  .querySelector("tbody");
 const carsTable = document.getElementById("carsTable").querySelector("tbody");
-const bookingsTable = document.getElementById("bookingsTable").querySelector("tbody");
+const bookingsTable = document
+  .getElementById("bookingsTable")
+  .querySelector("tbody");
 const saveCarBtn = document.getElementById("saveCarBtn");
 const updateCarBtn = document.getElementById("updateCarBtn");
-const mainContainer = document.querySelector(".container #cardContainer");
-
-
 
 // Initialize handleCar instance with static default data ;
 InitializeStaticCars(handleCar);
 
-
 // Sample data for bookings (in a real app, this would come from a database)
 const bookings = [
-  { id: 1, carId: 2, customer: "John Doe", startDate: "2023-11-01", endDate: "2023-11-05", totalPrice: 1500, status: "Active", },
-  { id: 2, carId: 3, customer: "Jane Smith", startDate: "2023-11-10", endDate: "2023-11-15", totalPrice: 1250, status: "Completed", },];
+  {
+    id: 1,
+    carId: 2,
+    customer: "John Doe",
+    startDate: "2023-11-01",
+    endDate: "2023-11-05",
+    totalPrice: 1500,
+    status: "Active",
+  },
+  {
+    id: 2,
+    carId: 3,
+    customer: "Jane Smith",
+    startDate: "2023-11-10",
+    endDate: "2023-11-15",
+    totalPrice: 1250,
+    status: "Completed",
+  },
+];
 
 // Initialize the dashboard
 document.addEventListener("DOMContentLoaded", function () {
@@ -67,14 +88,16 @@ function loadRecentActivity() {
   const activities = [
     { car: "Toyota Camry", status: "Booked", time: "2 hours ago" },
     { car: "Honda Civic", status: "Returned", time: "1 day ago" },
-    { car: "Ford Mustang", status: "Available", time: "2 days ago" },];
+    { car: "Ford Mustang", status: "Available", time: "2 days ago" },
+  ];
   activities.forEach((activity) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${activity.car}</td>
-      <td><span class="badge ${activity.status === "Booked"
-        ? "bg-danger"
-        : activity.status === "Returned"
+      <td><span class="badge ${
+        activity.status === "Booked"
+          ? "bg-danger"
+          : activity.status === "Returned"
           ? "bg-success"
           : "bg-primary"
       }">${activity.status}</span></td>
@@ -123,7 +146,8 @@ function setupEventListeners() {
     const description = document.getElementById("carDescription").value;
 
     // Generate a new ID
-    const newId = Math.max(...handleCar.getAllCars().map((car) => car.car_id), 0) + 1;
+    const newId =
+      Math.max(...handleCar.getAllCars().map((car) => car.car_id), 0) + 1;
     try {
       const newCar = handleCar.createCar(
         newId,
