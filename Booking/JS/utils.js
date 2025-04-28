@@ -1,5 +1,6 @@
 export function popupModal(id,data){
    let element = document.getElementById(id);
+   const emailParagraph = data.email.trim() !== ""? `<p>Email: ${data.email}</p>`: "";
    element.innerHTML=`
    <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -11,6 +12,7 @@ export function popupModal(id,data){
         <div class="modal-body">
           <p>Full Name: ${data.firstName} ${data.lastName}</p>
           <p>Phone Number: ${data.phoneNumber}</p>
+          ${emailParagraph}
           <p>Booked Car: ${data.brand} ${data.model}  (${data.type})</p>
           <p>Pick Up Data: ${data.pickupLocation}, in ${data.pickupDate} at ${data.pickupTime}</p>
           <p>Drop Off Data: ${data.dropoffLocation}, in ${data.dropoffDate} at ${data.DropoffTime}</p>
@@ -21,23 +23,24 @@ export function popupModal(id,data){
       </div>
     </div>
   </div>`;
+  const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    myModal.show();
 }
 
 export function generateCarForm() {
     const cars = JSON.parse(localStorage.getItem('cars'));
     
-    // Extract unique brands, models, and types
+    // Extract unique brands, models, and types using set and by using spread operator ==> convert set to an array.
     const brands = [...new Set(cars.map(car => car.brand))];
     const models = [...new Set(cars.map(car => car.model))];
     const types = [...new Set(cars.map(car => car.type))];
   
-    // Create the dropdowns dynamically
+    //selects each select of brand , model,type
     const brandSelect = document.getElementById('brandSelect');
     const modelSelect = document.getElementById('modelSelect');
     const typeSelect = document.getElementById('typeSelect');
   
-    // Populate the brand dropdown
-    brandSelect.innerHTML = `<option value="">Select Brand</option>`;
+    //Car brand dropdown
     brands.forEach(brand => {
       const option = document.createElement('option');
       option.value = brand;
@@ -45,8 +48,7 @@ export function generateCarForm() {
       brandSelect.appendChild(option);
     });
   
-    // Populate the model dropdown
-    modelSelect.innerHTML = `<option value="">Select Model</option>`;
+    // Car model dropdown
     models.forEach(model => {
       const option = document.createElement('option');
       option.value = model;
@@ -54,8 +56,7 @@ export function generateCarForm() {
       modelSelect.appendChild(option);
     });
   
-    // Populate the type dropdown
-    typeSelect.innerHTML = `<option value="">Select Type</option>`;
+    // Car type dropdown.
     types.forEach(type => {
       const option = document.createElement('option');
       option.value = type;
@@ -64,4 +65,4 @@ export function generateCarForm() {
     });
   }
   
-  // Call the function to populate the dropdowns when the page loads
+
