@@ -23,6 +23,21 @@ function renderCar(car, mainContainer) {
   }
 }
 
+// function to handle click event and  get data of clicked car .
+window.book=function(carId) {
+window.location.href="../Booking/booking.html";
+  const cars = JSON.parse(localStorage.getItem('cars'));
+  const car = cars.find(car => car.car_id === carId);
+
+  if (car) {
+    car.booked = true;
+    localStorage.setItem("bookedCarFromHome",JSON.stringify(car));
+  } else {
+    console.error("Car not found!");
+  }
+}
+
+
 // create card function to create card for each car 
 function createCard(car) {
   return `
@@ -47,6 +62,7 @@ function createCard(car) {
 // Create function to create Details Card whene 
 // I click on any cards display this card in modal and conatin all details of the car and booking button 
 function createCardDetails(car) {
+
   // Set modal title
   return `
     <div class="modal fade" id="${car.car_id}" tabindex="-1" aria-labelledby="cardModaLabel" aria-hidden="true">
@@ -74,21 +90,21 @@ function createCardDetails(car) {
         <strong>Late Returns: </strong> <i> Additional fees will apply for vehicles returned after the agreed return time/date.</p>
         <p> </i></p>
         <div class="bookbtn-container d-flex justify-content-center mt-3">
-          <button onclick="bookNow()" class="bookbtn btn btn-primary">Book Now</button>
+          <button onclick="book(${car.car_id})" class="bookbtn btn btn-primary">Book Now</button>       
         </div>
         </div>
       </div>
       </div>
       <!-- Modal Footer with Close Button -->
       <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" id="${car.car_id}" class="btn btn-secondary booknow-btn" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
     </div>
   </div>
       `;
-
 }
+
 // a function that opens booking form page .
 // window.bookNow = function() {
 //   window.open("../Booking/booking.html");

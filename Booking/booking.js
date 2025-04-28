@@ -1,22 +1,33 @@
 import { controlDateView } from "./JS/controller.js";
 import { BookingForm } from "./JS/Model.js";
 import { popupModal } from "./JS/utils.js";
+import { generateCarForm } from "./JS/utils.js";
 
 controlDateView(); // disables previous dates from today .
 
     
     const form = document.getElementById("bookingForm");
     let General =JSON.parse(sessionStorage.getItem("GeneralBookingData")) ;
-  
+    let bookedCar = JSON.parse(localStorage.getItem("bookedCarFromHome"));
     document.addEventListener('DOMContentLoaded',function(){
-        if (General) {
+        generateCarForm();
+        if(General) {
+            console.log(bookedCar);
             document.querySelector('input[placeholder="pick up location"]').value = General.pickupLocation;
             document.querySelector('input[placeholder="Drop Off location"]').value = General.dropoffLocation;
             document.getElementById("pickUpdate").value = General.pickupDate;
             document.getElementById("pickUptime").value = General.pickupTime;
             document.getElementById("dropOffdate").value = General.dropoffDate;
             document.getElementById("dropOfftime").value = General.DropoffTime;
+            
         }
+        if (bookedCar) {
+            console.log(bookedCar);
+            document.getElementById("brandSelect").value=bookedCar.brand;
+            document.getElementById("modelSelect").value=bookedCar.model;
+            document.getElementById("typeSelect").value=bookedCar.type;
+        }
+       
         
             form.addEventListener("submit",function(event){
                 event.preventDefault();
@@ -30,7 +41,10 @@ controlDateView(); // disables previous dates from today .
                 const pickUpTime = document.getElementById("pickUptime").value;
                 const dropOffDate = document.getElementById("dropOffdate").value;
                 const dropOffTime = document.getElementById("dropOfftime").value;
-                const Finalbook = new BookingForm(pickUpLocation,pickUpDate,pickUpTime,dropOffLocation,dropOffDate,dropOffTime,firstName,lastName,phone,email);
+                const brandSelect = document.getElementById('brandSelect').value;
+                const modelSelect = document.getElementById('modelSelect').value;
+                const typeSelect = document.getElementById('typeSelect').value;
+                const Finalbook = new BookingForm(pickUpLocation,pickUpDate,pickUpTime,dropOffLocation,dropOffDate,dropOffTime,firstName,lastName,phone,email,brandSelect,modelSelect,typeSelect);
                 localStorage.setItem("BookingData",JSON.stringify(Finalbook));
                 let Data = JSON.parse(localStorage.getItem("BookingData"));
                 popupModal("pop",Data);

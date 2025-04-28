@@ -21,9 +21,14 @@ class Controller {
   }
 
   // Method to create a new car object
+  createCar(car_id,url_img,brand,model,type,rental_price,year,description) {
+    const existingCar = this.cars.findIndex(
+      (element) => element.car_id === car_id
+    );
   createCar(car_id, url_img, brand, model, type, rental_price, year, description) {
     const existingCar = this.cars.findIndex((element) => element.car_id === car_id);
     if (existingCar === -1) {
+      const newCar = new Car(car_id,url_img,brand,model,type,rental_price,year,description);
       const newCar = new Car(car_id, url_img, brand, model, type,
         rental_price,
         year,

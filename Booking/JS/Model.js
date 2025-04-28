@@ -9,11 +9,14 @@ export class GeneralBooking { // that appears on the home page .
   }
 }
 export class BookingForm extends GeneralBooking {
-    constructor(pickupLocation, pickupDate,pickupTime,dropoffLocation,dropoffDate,DropoffTime,firstName,lastName,phoneNumber,email){
+    constructor(pickupLocation, pickupDate,pickupTime,dropoffLocation,dropoffDate,DropoffTime,firstName,lastName,phoneNumber,email,brand,model,type){
         super(pickupLocation, pickupDate ,pickupTime,dropoffLocation,dropoffDate,DropoffTime);
         this.firstName=firstName;
         this.lastName=lastName;
         this.phoneNumber = phoneNumber;
         this.email=email;
+        this.brand=brand;
+        this.model=model;
+        this.type=type;
     }
 }
