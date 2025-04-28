@@ -1,7 +1,5 @@
 import { renderAllCars } from "./utils.js";
 import handleCar from "./controller-instance.js";
-<<<<<<< HEAD
-=======
 import { controlDateView } from "../../Booking/JS/controller.js";
 import {GeneralBooking} from "../../Booking/JS/Model.js"; 
 
@@ -26,15 +24,6 @@ const mainContainer = document.getElementById("mainCarContainer");
         block: 'start' // Align the section at the top of the page
     });
 }); 
-// Select elements
-const mainContainer = document.querySelector(".container #cardContainer");
-const dropDownSort = document.querySelectorAll(".dropdown #sortSelect");
-const dropDownAvailable = document.querySelectorAll(
-  ".dropdown #Availability_dropdown"
-);
-const searchInput = document.querySelector(".form .search-input");
-const searchButton = document.querySelector(".form .search_btn");
->>>>>>> aae10fa (sloved book now btn issue)
 
 // select elemnts main container 
 const mainContainer = document.querySelector(".container .row");
