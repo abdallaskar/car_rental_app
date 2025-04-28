@@ -79,3 +79,35 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  form {
+    text-align: center;
+  }
+
+  .error {
+    font-size: 14px;
+  }
+}
