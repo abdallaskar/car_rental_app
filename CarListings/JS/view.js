@@ -1,13 +1,13 @@
 import { renderAllCars } from "./utils.js";
 import handleCar from "./controller-instance.js";
-// Select elements
+
+// Select elements using dom
 const mainContainer = document.querySelector(".container #cardContainer");
 const dropDownSort = document.querySelectorAll(".dropdown #sortSelect");
-const dropDownAvailable = document.querySelectorAll(
-  ".dropdown #Availability_dropdown"
-);
+const dropDownAvailable = document.querySelectorAll(".dropdown #Availability_dropdown");
 const searchInput = document.querySelector(".form .search-input");
 const searchButton = document.querySelector(".form .search_btn");
+
 
 // Render initial cars
 renderAllCars(handleCar.getAllCars(), mainContainer);
@@ -17,7 +17,6 @@ searchButton.addEventListener("click", (event) => {
   event.preventDefault();
   const searchValue = searchInput.value.toLowerCase();
   searchInput.value = "";
-
   const filteredCars = handleCar.getCarsByType(searchValue);
   renderAllCars(filteredCars, mainContainer);
 });
@@ -26,7 +25,6 @@ searchButton.addEventListener("click", (event) => {
 dropDownAvailable.forEach((select) => {
   select.addEventListener("change", (event) => {
     const selectedValue = event.target.value;
-
     if (selectedValue === "1") {
       renderAllCars(handleCar.getAllCars(), mainContainer);
     } else if (selectedValue === "2") {

@@ -72,7 +72,4 @@ class Controller {
         return index;
     }
 
-
-
-
 }

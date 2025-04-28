@@ -19,10 +19,8 @@ const updateCarBtn = document.getElementById("updateCarBtn");
 const mainContainer = document.querySelector(".container #cardContainer");
 
 
-
 // Initialize handleCar instance with static default data ;
 InitializeStaticCars(handleCar);
-
 
 // Sample data for bookings (in a real app, this would come from a database)
 const bookings = [
@@ -172,6 +170,7 @@ function setupEventListeners() {
     const status = document.getElementById("editCarStatus").checked;
 
     const car = handleCar.findCarById(id);
+
     if (car) {
       // Update car properties
       car.brand = brand;
@@ -185,12 +184,10 @@ function setupEventListeners() {
 
       // Save to localStorage
       handleCar.saveCarsToStorage();
-
       // Close modal
       bootstrap.Modal.getInstance(
         document.getElementById("editCarModal")
       ).hide();
-
       // Update UI
       renderDashboardStats(
         handleCar,
@@ -219,9 +216,7 @@ function editCar(carId) {
     document.getElementById("editCarDescription").value = car.description;
     document.getElementById("editCarStatus").checked = !car.isBooked();
 
-    const editModal = new bootstrap.Modal(
-      document.getElementById("editCarModal")
-    );
+    const editModal = new bootstrap.Modal(document.getElementById("editCarModal"));
     editModal.show();
   }
 }

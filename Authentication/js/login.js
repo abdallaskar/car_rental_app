@@ -1,3 +1,4 @@
+
 const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', function (e) {
@@ -33,6 +34,7 @@ form.addEventListener('submit', function (e) {
     window.location.href = "home.html";
   }
 });
+
 
 // Get the Register link
 const registerLink = document.getElementById('registerLink');
