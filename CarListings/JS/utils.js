@@ -79,7 +79,8 @@ function createCardDetails(car) {
         <p> </i></p>
         <div class="bookbtn-container d-flex justify-content-center mt-3">
           <!-- Modified this part and used eventListener instead of onclick -->
-          <button data-car-id="${car.car_id}" class="bookbtn btn btn-primary">Book Now</button>
+          ${car.booked ? `<button  class="bookbtn btn btn-danger disabled">Not Available Now</button>` : `<button data-car-id="${car.car_id}" class="bookbtn btn btn-primary">Book Now</button>`}
+          
 
         </div>
         </div>
