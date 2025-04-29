@@ -65,4 +65,14 @@ export function generateCarForm() {
     });
   }
   
+ // BOOKING FUNCTIONALITY .
+ export function navigateToBooking(car_id) {
+  if (car_id) {
+    sessionStorage.setItem("bookedCarId", JSON.stringify(car_id));
+    window.location.href = "../Booking/booking.html";
+  } else {
+    console.error("Car not found!");
+  }
+}
+// END OF BOOKING FUNCTIONALITY.
 

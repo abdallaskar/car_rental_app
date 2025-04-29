@@ -19,6 +19,5 @@ class Car {
     isBooked() {
         return this.booked;
     }
-
 }
 export default Car; // Export the Car class for use in other modules

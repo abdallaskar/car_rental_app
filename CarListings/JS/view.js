@@ -1,5 +1,7 @@
 import { renderAllCars } from "./utils.js";
 import handleCar from "./controller-instance.js";
+import { navigateToBooking } from "../../Booking/JS/utils.js";
+
 
 // Select elements using dom
 const mainContainer = document.querySelector(
@@ -15,6 +17,14 @@ console.log(mainContainer);
 console.log(handleCar.getAllCars());
 // Render initial cars
 renderAllCars(handleCar.getAllCars(), mainContainer);
+
+// ADDED EVENTLISTENER ON THE BOOKNOW BUTTON AND GETTING CAR ID USING CUSTOM DATA ATTRIBUTE.
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("bookbtn")) {
+    const carId = parseInt(event.target.getAttribute("data-car-id")); //converts the id as a string --> integer
+    navigateToBooking(carId);
+  }
+});
 
 // Search by type of car
 searchButton.addEventListener("click", (event) => {
