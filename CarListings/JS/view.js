@@ -2,6 +2,7 @@ import { renderAllCars, sortCarsByRentalPrice, sortCarsByRentalPriceDes } from "
 import handleCar from "./controller-instance.js";
 
 // Select elements using dom
+<<<<<<< HEAD
 const mainContainer = document.querySelector("#mainCarContainer #cardContainer");
 const dropDownSort = document.querySelectorAll(".dropdown #sortSelect");
 const dropDownAvailable = document.querySelectorAll(".dropdown #Availability_dropdown");
@@ -10,6 +11,18 @@ const searchInput = document.querySelector(".form .search-input");
 const searchButton = document.querySelector(".form .search_btn");
 // global array to save cars desplay on the screan 
 let carsOnDisaplayNow = handleCar.getAllCars() || [];
+=======
+
+const mainContainer = document.querySelector(
+  "#mainCarContainer #cardContainer"
+);
+
+const dropDownSort = document.querySelectorAll(".dropdown #sortSelect");
+const dropDownAvailable = document.querySelectorAll(".dropdown #Availability_dropdown");
+const searchInput = document.querySelector(".form .search-input");
+const searchButton = document.querySelector(".form .search_btn");
+
+>>>>>>> fe0546568e0636e31fa30457bf2b32010ac64384
 
 
 // Render initial cars

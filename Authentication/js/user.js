@@ -1,5 +1,4 @@
 
-
 export class User {
 
     constructor(userId, name, email, passwrod) {
@@ -8,5 +7,4 @@ export class User {
         this.email = email;
         this.passwrod = passwrod;
     }
-
 }
