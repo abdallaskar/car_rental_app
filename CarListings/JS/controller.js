@@ -72,7 +72,7 @@ class Controller {
 
   // Method to remove a car object from the array by ID
   removeCar(car_id) {
-    const index = this.cars.findIndex((element) => element.car_id === car_id);
+    const index = this.cars.findIndex((element) => element.car_id === String(car_id));
     if (index !== -1) {
       this.cars.splice(index, 1);
       this.saveCarsToStorage(); // Save to localStorage after removing
@@ -85,10 +85,15 @@ class Controller {
   }
 
   markCarAsBooked(car_id) {
-    const index = this.cars.findIndex((car) => car.car_id === car_id);
+
+    const index = this.cars.findIndex(item => item.car_id == car_id);
+    console.log(index);
     if (index !== -1) {
       this.cars[index].setBooked(true);
       this.saveCarsToStorage(); // Save to localStorage after marking as booked
+    }
+    else {
+      console.log("this id not found index");
     }
   }
 
@@ -97,16 +102,16 @@ class Controller {
   }
 
   // Method to get car objects by Brand name
-  getCarsByBrandName(brand) {
+  getCarsBytype(type) {
     return this.cars.filter((element) =>
-      brand.toLowerCase() === element.brand.toLowerCase() ? element : null
+      type.toLowerCase() === element.type.toLowerCase() ? element : null
     );
   }
 
   // Method to get car objects by Type
-  getCarsByType(type) {
+  getCarsByName(brand) {
     return this.cars.filter((element) =>
-      type.toLowerCase() === element.type.toLowerCase() ? element : null
+      brand.toLowerCase() === element.brand.toLowerCase() ? element : null
     );
   }
 
@@ -114,27 +119,10 @@ class Controller {
   getCarsAvalible() {
     return this.cars.filter((element) => !element.booked);
   }
-
   // Method to get unavailable cars
   getCarsNotAvalible() {
     return this.cars.filter((element) => element.booked);
   }
 
-  // Method to sort car objects by rental price in ascending order
-  sortCarsByRentalPrice() {
-    this.cars.sort(
-      (element1, element2) => element1.rental_price - element2.rental_price
-    );
-    this.saveCarsToStorage(); // Save to localStorage after sorting
-  }
-
-  // Method to sort car objects by rental price in descending order
-  sortCarsByRentalPriceDesc() {
-    this.cars.sort(
-      (element1, element2) => element2.rental_price - element1.rental_price
-    );
-    this.saveCarsToStorage(); // Save to localStorage after sorting
-  }
 }
-
 export default Controller;

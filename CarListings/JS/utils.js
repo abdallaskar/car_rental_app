@@ -1,5 +1,5 @@
 import handleCar from "./controller-instance.js";
-export { renderAllCars, renderCar }; // Exporting functions for use in other modules
+export { renderAllCars, renderCar, sortCarsByRentalPrice, sortCarsByRentalPriceDes }; // Exporting functions for use in other modules
 
 // Function to render all Cars in the main container
 function renderAllCars(cars, mainContainer) {
@@ -8,6 +8,7 @@ function renderAllCars(cars, mainContainer) {
     renderCar(car, mainContainer); // Render the card and details in the main container
   });
 }
+
 
 // Function to render car cards and card Details in the main container
 function renderCar(car, mainContainer) {
@@ -23,11 +24,12 @@ function renderCar(car, mainContainer) {
   }
 }
 
+
 // function to handle click event and  get data of clicked car .
-window.book = function (carId) {
-  window.location.href = "../Booking/booking.html";
-  handleCar.markCarAsBooked(carId);
-};
+// window.book = function BookCar(carId) {
+//   window.location.href = "../Booking/booking.html";
+//   handleCar.markCarAsBooked(carId);
+// };
 
 // create card function to create card for each car
 function createCard(car) {
@@ -35,16 +37,14 @@ function createCard(car) {
     <div class="col-md-4">
       <div class="card h-100 shadow-sm card-hover" role="button" data-bs-toggle="modal"
       data-bs-target="#${car.car_id}">
-      <img src="${car.url_img}" class="card-img-top" alt="${
-    car.brand
-  }" style="height: 300px; object-fit: cover;">
+      <img src="${car.url_img}" class="card-img-top" alt="${car.brand
+    }" style="height: 300px; object-fit: cover;">
       <div class="card-body d-flex flex-column justify-content-between">
       <div>
-      <h5 class="card-title">${car.brand} ${car.model} ${car.type} ${
-    car.booked
-      ? "<span style='color: red;'>●</span>"
-      : " <span style = 'color: green;' >●</span>"
-  }</h5>
+      <h5 class="card-title">${car.brand} ${car.model} ${car.type} ${car.booked
+      ? "<span style='color: red; font-size: 14px;'>Not Available</span>"
+      : " <span style='color: green; font-size: 14px;'>Available</span>"
+    }</h5>
       <p class="card-text">Price per day: $${car.rental_price}</p>
       </div>
       <div class="d-flex justify-content-center mt-3">
@@ -61,16 +61,14 @@ function createCard(car) {
 function createCardDetails(car) {
   // Set modal title
   return `
-    <div class="modal fade" id="${
-      car.car_id
+    <div class="modal fade" id="${car.car_id
     }" tabindex="-1" aria-labelledby="cardModaLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title" id="${car.car_id}">${car.brand} ${
-    car.model
-  } Details</h5>
+          <h5 class="modal-title" id="${car.car_id}">${car.brand} ${car.model
+    } Details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
       <!-- Modal Body -->
@@ -78,25 +76,22 @@ function createCardDetails(car) {
       <div class="row g-3 align-items-center">
         <!-- Product Image -->
         <div class="col-md-6">
-        <img src="${car.url_img}" alt="${car.brand} ${
-    car.model
-  }" class="img-fluid rounded">
+        <img src="${car.url_img}" alt="${car.brand} ${car.model
+    }" class="img-fluid rounded">
         </div>
         <!-- Product Details -->
         <div class="col-md-6 d-flex flex-column justify-content-center">
         <h4>${car.brand} ${car.model} ${car.type}</h4>
         <p>${car.description}  modal ${car.year}</p>
-        <p><strong>This car is :</strong>${
-          car.booked ? " NOT Avalible" : " Avalible"
-        }</p>
+        <p><strong>This car is :</strong>${car.booked ? " NOT Avalible" : " Avalible"
+    }</p>
         <p><strong>Price per day:</strong> $${car.rental_price}</p>
         <p><strong>Minimum Rental Period:</strong> <i>Minimum rental period is 2 days. Late returns will incur additional charges.</i><br>
         <strong>Late Returns: </strong> <i> Additional fees will apply for vehicles returned after the agreed return time/date.</p>
         <p> </i></p>
         <div class="bookbtn-container d-flex justify-content-center mt-3">
-          <button onclick="book(${
-            car.car_id
-          })" class="bookbtn btn btn-primary">Book Now</button>       
+          <button class="bookbtn btn btn-primary" 
+          id="bookNowBtn_${car.car_id}" data-car-id="${car.car_id}"  ${(car.booked) ? "disabled" : ""}> Book Now</button>       
         </div>
         </div>
       </div>
@@ -111,7 +106,16 @@ function createCardDetails(car) {
       `;
 }
 
-// a function that opens booking form page .
-// window.bookNow = function() {
-//   window.open("../Booking/booking.html");
-// }
+// sort array of cars asending on rental price
+function sortCarsByRentalPrice(arrOfCars) {
+  return arrOfCars.sort(function (element1, element2) {
+    return element1.rental_price - element2.rental_price;
+  });
+}
+//sort array of cars desnding on rental price
+function sortCarsByRentalPriceDes(arrOfCars) {
+  return arrOfCars.sort(function (element1, element2) {
+    return element2.rental_price - element1.rental_price;
+  });
+}
+
