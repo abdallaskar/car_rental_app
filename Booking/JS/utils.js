@@ -1,3 +1,4 @@
+import handleCar from "../../CarListings/JS/controller-instance.js";
 export function popupModal(id,data){
    let element = document.getElementById(id);
    const emailParagraph = data.email.trim() !== ""? `<p>Email: ${data.email}</p>`: "";
@@ -13,12 +14,12 @@ export function popupModal(id,data){
           <p>Full Name: ${data.firstName} ${data.lastName}</p>
           <p>Phone Number: ${data.phoneNumber}</p>
           ${emailParagraph}
-          <p>Booked Car: ${data.brand} ${data.model}  (${data.type})</p>
+          <p>Booked Car: ${data.brand} ${data.model}</p>
           <p>Pick Up Data: ${data.pickupLocation}, in ${data.pickupDate} at ${data.pickupTime}</p>
           <p>Drop Off Data: ${data.dropoffLocation}, in ${data.dropoffDate} at ${data.DropoffTime}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href="../../CarListings/carlist.html">Close</button>
         </div>
       </div>
     </div>
@@ -27,18 +28,16 @@ export function popupModal(id,data){
     myModal.show();
 }
 
-export function generateCarForm() {
-    const cars = JSON.parse(localStorage.getItem('cars'));
-    
+export function generateCarForm() {    // This function shows the brand in the form of html .
+    const cars = handleCar.getCarsAvalible();  // Array of all available cars.
+   
     // Extract unique brands, models, and types using set and by using spread operator ==> convert set to an array.
     const brands = [...new Set(cars.map(car => car.brand))];
     const models = [...new Set(cars.map(car => car.model))];
-    const types = [...new Set(cars.map(car => car.type))];
   
-    //selects each select of brand , model,type
+    //selects each select of brand , model .
     const brandSelect = document.getElementById('brandSelect');
     const modelSelect = document.getElementById('modelSelect');
-    const typeSelect = document.getElementById('typeSelect');
   
     //Car brand dropdown
     brands.forEach(brand => {
@@ -55,14 +54,6 @@ export function generateCarForm() {
       option.textContent = model;
       modelSelect.appendChild(option);
     });
-  
-    // Car type dropdown.
-    types.forEach(type => {
-      const option = document.createElement('option');
-      option.value = type;
-      option.textContent = type;
-      typeSelect.appendChild(option);
-    });
   }
   
  // BOOKING FUNCTIONALITY .
@@ -75,4 +66,6 @@ export function generateCarForm() {
   }
 }
 // END OF BOOKING FUNCTIONALITY.
-
+export function changeCar(){
+  window.location.href="../../CarListings/carlist.html"; 
+}
