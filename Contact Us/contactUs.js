@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Map handleing cuurent location
-
+// 
 // let para = document.getElementById("para");
 
 // function goToLocation() {
