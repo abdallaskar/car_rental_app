@@ -4,6 +4,7 @@ import {
   sortCarsByRentalPriceDes,
 } from "./utils.js";
 import handleCar from "./controller-instance.js";
+import { navigateToBooking } from "../../Booking/JS/utils.js";
 
 // Select elements using dom
 const mainContainer = document.querySelector(
@@ -22,7 +23,15 @@ let carsOnDisaplayNow = handleCar.getAllCars() || [];
 // Render initial cars
 renderAllCars(handleCar.getAllCars(), mainContainer);
 
-// Search by barnd name of car
+// ADDED EVENTLISTENER ON THE BOOKNOW BUTTON AND GETTING CAR ID USING CUSTOM DATA ATTRIBUTE.
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("bookbtn")) {
+    const carId = parseInt(event.target.getAttribute("data-car-id")); //converts the id as a string --> integer
+    navigateToBooking(carId);
+  }
+});
+
+// Search by type of car
 searchButton.addEventListener("click", (event) => {
   event.preventDefault();
   const searchValue = searchInput.value.toLowerCase().trim();
