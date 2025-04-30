@@ -19,14 +19,14 @@ form.addEventListener("submit", function (event) {
   const pickUpTime = document.getElementById("pickUptime").value;
   const dropOffDate = document.getElementById("dropOffdate").value;
   const dropOffTime = document.getElementById("dropOfftime").value;
-  let book = new GeneralBooking(
-    pickUpLocation,
-    pickUpDate,
-    pickUpTime,
-    dropOffLocation,
-    dropOffDate,
-    dropOffTime
-  );
+  let book = {
+    pickUpLocation:pickUpLocation,
+    pickUpDate:pickUpDate ,
+    pickUpTime:pickUpTime,
+    dropOffLocation:dropOffLocation,
+    dropOffDate:dropOffDate,
+    dropOffTime:dropOffTime
+  };
   sessionStorage.setItem("GeneralBookingData", JSON.stringify(book));
   mainContainer.scrollIntoView({
     behavior: "smooth", // Smooth scrolling

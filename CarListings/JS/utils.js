@@ -18,20 +18,21 @@ function renderCar(car, mainContainer) {
   mainContainer.innerHTML += details; // Append the details to the main container
   // Helper function to convert an HTML string to a DOM element
   function createElementFromHTML(htmlString) {
-    const div = document.createElement("div");
+    const div = document.createElement('div');
     div.innerHTML = htmlString.trim();
     return div.firstChild;
   }
 }
 
 
+
 // function to handle click event and  get data of clicked car .
-// window.book = function BookCar(carId) {
+// window.book = function (carId) {
 //   window.location.href = "../Booking/booking.html";
 //   handleCar.markCarAsBooked(carId);
 // };
 
-// create card function to create card for each car
+// create card function to create card for each car 
 function createCard(car) {
   return `
     <div class="col-md-4">
@@ -56,13 +57,13 @@ function createCard(car) {
     `;
 }
 
-// Create function to create Details Card whene
-// I click on any cards display this card in modal and conatin all details of the car and booking button
+// Create function to create Details Card whene 
+// I click on any cards display this card in modal and conatin all details of the car and booking button 
 function createCardDetails(car) {
+
   // Set modal title
   return `
-    <div class="modal fade" id="${car.car_id
-    }" tabindex="-1" aria-labelledby="cardModaLabel" aria-hidden="true">
+    <div class="modal fade" id="${car.car_id}" tabindex="-1" aria-labelledby="cardModaLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
         <!-- Modal Header -->
@@ -90,15 +91,17 @@ function createCardDetails(car) {
         <strong>Late Returns: </strong> <i> Additional fees will apply for vehicles returned after the agreed return time/date.</p>
         <p> </i></p>
         <div class="bookbtn-container d-flex justify-content-center mt-3">
-          <button class="bookbtn btn btn-primary" 
-          id="bookNowBtn_${car.car_id}" data-car-id="${car.car_id}"  ${(car.booked) ? "disabled" : ""}> Book Now</button>       
+          <!-- Modified this part and used eventListener instead of onclick -->
+          ${car.booked ? `<button  class="bookbtn btn btn-danger disabled">Not Available Now</button>` : `<button data-car-id="${car.car_id}" class="bookbtn btn btn-primary">Book Now</button>`}
+          
+
         </div>
         </div>
       </div>
       </div>
       <!-- Modal Footer with Close Button -->
       <div class="modal-footer">
-      <button type="button"  class="btn btn-secondary booknow-btn" data-bs-dismiss="modal">Close</button>
+      <button type="button" id="${car.car_id}" class="btn btn-secondary booknow-btn" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
     </div>

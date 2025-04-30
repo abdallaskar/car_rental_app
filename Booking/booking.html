@@ -10,6 +10,7 @@
 </head>
 <body>
     <main class="row pt-4 justify-content-center text-secondary ">
+        <button id="ChangeCar">Change Car</button>
         <form id="bookingForm" class="row col-10 col-sm-9 col-md-7 col-lg-5 shadow justify-content-center g-4 py-2" >
             <section class="d-flex flex-column">
                     <label for="fname" class=" text-secondary">First Name </label>
@@ -25,17 +26,14 @@
              </section>
              <section  class=" d-flex flex-column">
                 <label for="phone" class="form-label">Phone Number</label>
-                <input class="form-control px-2 py-3" id="phone" type="tel" pattern="^01\d{9}$" title="Phone number should start with 01 and is 11 digits" required>   <!--  -->
+                <input class="form-control px-2 py-3" id="phone" type="tel" maxlength="11" pattern="^01\d{9}$" title="Phone number should start with 01 and is 11 digits" required>   <!--  -->
              </section>
              <section class="d-flex" id="car">
-                <select class="form-select py-3" id="brandSelect">
-                    <option value="">Select Brand</option>
+                <select class="form-select py-3" id="brandSelect" disabled>
+                    <option value="">select brand</option>
                 </select>
-                <select class="form-select" id="modelSelect">
+                <select class="form-select" id="modelSelect" disabled> 
                     <option value="">Select Model</option>
-                </select>
-                <select class="form-select" id="typeSelect">
-                    <option value="">Select Type</option>
                 </select>
              </section>
              <section class="d-flex flex-column flex-md-row gap-md-2">
@@ -75,8 +73,7 @@
                 </div>
             </section>
              <section  class=" d-flex justify-content-around">
-
-                <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Confirm</button>  <button type="reset">Delete</button>
+                <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Confirm</button>
              </section>
         </form>
     </main>
@@ -88,3 +85,4 @@
     <script type="module" src="booking.js"></script>
 </body>
 </html>
+
