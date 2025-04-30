@@ -6,15 +6,12 @@ controlDateView();
 
 //getting values from GeneralBooking form present in the home page and scrolling  to carlist after submission  .
 const form = document.getElementById("generalBooking");
+// const findCar = document.getElementById("findCarbtn");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  const mainContainer = document.getElementById("mainCarContainer");
-  const pickUpLocation = document.querySelector(
-    'input[placeholder="pick up location"]'
-  ).value;
-  const dropOffLocation = document.querySelector(
-    'input[placeholder="Drop Off location"]'
-  ).value;
+  // const mainContainer = document.getElementById("mainCarContainer");
+  const pickUpLocation = document.getElementById("pickupL").value;
+  const dropOffLocation = document.getElementById("dropOffL").value
   const pickUpDate = document.getElementById("pickUpdate").value;
   const pickUpTime = document.getElementById("pickUptime").value;
   const dropOffDate = document.getElementById("dropOffdate").value;
@@ -28,8 +25,9 @@ form.addEventListener("submit", function (event) {
     dropOffTime:dropOffTime
   };
   sessionStorage.setItem("GeneralBookingData", JSON.stringify(book));
-  mainContainer.scrollIntoView({
-    behavior: "smooth", // Smooth scrolling
-    block: "start", // Align the section at the top of the page
-  });
+  window.location.href="CarListings/carlist.html";
+  // mainContainer.scrollIntoView({
+  //   behavior: "smooth", // Smooth scrolling
+  //   block: "start", // Align the section at the top of the page
+  // });
 });
