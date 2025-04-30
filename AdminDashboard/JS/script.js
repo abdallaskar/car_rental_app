@@ -225,7 +225,7 @@ function setupEventListeners() {
       renderCarsTable(handleCar, carsTable);
 
       // Show success message
-      alert("Car updated successfully!");
+      // alert("Car updated successfully!");
     }
   });
 }

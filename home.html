@@ -1,237 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Car Rental - Home</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img
-              src="/Authentication/imgs/logo3.jpg"
-              alt="Car Rental Logo"
-              class="img-fluid"
-            />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active fw-medium" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-medium" href="/CarListings/carlist.html"
-                  >Car List</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-medium" href="Contact Us/contactUs.html"
-                  >Contact Us</a
-                >
-              </li>
-            </ul>
-            <div class="d-flex">
-              <a
-                href="/Authentication/login.html"
-                class="btn btn-outline-primary px-4"
-                >Login/Register</a
-              >
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
 
-    <main>
-      <div class="container-fluid px-0">
-        <div class="hero-section">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-6 hero-content">
-                <h1 class="display-4 fw-bold mb-4">Find Your Perfect Ride</h1>
-                <p class="lead mb-5 fs-5">
-                  Discover the best car rental deals for your next adventure.
-                  Quality vehicles at affordable prices with 24/7 customer
-                  support.
-                </p>
-                <button class="btn btn-primary btn-lg" onclick="viewCars()">
-                  Browse Our Fleet
-                </button>
-              </div>
-              <div class="col-lg-6 booking-form">
-                <div class="booking-card">
-                  <h3 class="mb-4 text-center fw-bold">Book Your Car Now</h3>
-                  <form id="generalBooking" class="row g-3">
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0">
-                          <i class="bi bi-geo-alt-fill text-primary"></i>
-                        </span>
-                        <input
-                          type="text"
-                          class="form-control border-start-0"
-                          placeholder="Pick-up location"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0">
-                          <i class="bi bi-geo-alt-fill text-primary"></i>
-                        </span>
-                        <input
-                          type="text"
-                          class="form-control border-start-0"
-                          placeholder="Drop-off location"
-                          required
-                        />
-                      </div>
-                    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Car Rental - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
+</head>
 
-                    <div class="col-md-6">
-                      <label for="pickUpdate" class="form-label"
-                        >Pick-up Date</label
-                      >
-                      <input
-                        id="pickUpdate"
-                        class="form-control"
-                        type="date"
-                        required
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="pickUptime" class="form-label"
-                        >Pick-up Time</label
-                      >
-                      <input
-                        id="pickUptime"
-                        class="form-control"
-                        type="time"
-                        required
-                      />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label for="dropOffdate" class="form-label"
-                        >Drop-off Date</label
-                      >
-                      <input
-                        id="dropOffdate"
-                        class="form-control"
-                        type="date"
-                        required
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="dropOfftime" class="form-label"
-                        >Drop-off Time</label
-                      >
-                      <input
-                        id="dropOfftime"
-                        class="form-control"
-                        type="time"
-                        required
-                      />
-                    </div>
-
-                    <div class="col-12 mt-4">
-                      <button class="find-button w-100" type="submit">
-                        Find Available Cars
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section class="container my-5 py-5">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold display-5">Why Choose Us</h2>
-          <p class="lead text-muted">
-            We provide the best car rental experience
-          </p>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm feature-card p-4">
-              <div class="card-body text-center">
-                <i class="bi bi-speedometer2 feature-icon"></i>
-                <h3 class="h4 fw-bold mb-3">Wide Selection</h3>
-                <p class="text-muted">
-                  Choose from our extensive fleet of vehicles for every need and
-                  budget, from compact cars to luxury SUVs.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm feature-card p-4">
-              <div class="card-body text-center">
-                <i class="bi bi-cash-coin feature-icon"></i>
-                <h3 class="h4 fw-bold mb-3">Best Prices</h3>
-                <p class="text-muted">
-                  Competitive rates with no hidden fees. Our price match
-                  guarantee ensures you get the best deal available.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm feature-card p-4">
-              <div class="card-body text-center">
-                <i class="bi bi-headset feature-icon"></i>
-                <h3 class="h4 fw-bold mb-3">24/7 Support</h3>
-                <p class="text-muted">
-                  Our dedicated customer service team is available around the
-                  clock to assist you with any questions or issues.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="text-center">
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
       <div class="container">
-        <p class="mb-0">© 2025 Car Rental. All rights reserved.</p>
+        <a class="navbar-brand" href="#">
+          <img src="/Authentication/imgs/logo3.jpg" alt="Car Rental Logo" class="img-fluid" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active fw-medium" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-medium" href="/CarListings/carlist.html">Car List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-medium" href="Contact Us/contactUs.html">Contact Us</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <button id="authButton" class="btn btn-outline-primary px-4 me-2" data-bs-toggle="modal"
+              data-bs-target="#authModal">
+              Login/Register
+            </button>
+            <button id="dashboardButton" class="btn btn-outline-primary px-4 d-none "
+              onclick="window.location.href='./AdminDashboard/admin.html'">
+              Dashboard
+            </button>
+          </div>
+        </div>
       </div>
-    </footer>
+    </nav>
+  </header>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      function viewCars() {
-        window.location.href = "/CarListings/carlist.html";
-      }
-    </script>
-  </body>
+  <main>
+    <div class="container-fluid px-0">
+      <div class="hero-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+              <h1 class="display-4 fw-bold mb-4">Find Your Perfect Ride</h1>
+              <p class="lead mb-5 fs-5">
+                Discover the best car rental deals for your next adventure.
+                Quality vehicles at affordable prices with 24/7 customer
+                support.
+              </p>
+              <button class="btn btn-primary btn-lg" onclick="viewCars()">
+                Browse Our Fleet
+              </button>
+            </div>
+            <div class="col-lg-6 booking-form">
+              <div class="booking-card">
+                <h3 class="mb-4 text-center fw-bold">Book Your Car Now</h3>
+                <form id="generalBooking" class="row g-3">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-geo-alt-fill text-primary"></i>
+                      </span>
+                      <input type="text" class="form-control border-start-0" placeholder="Pick-up location" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-geo-alt-fill text-primary"></i>
+                      </span>
+                      <input type="text" class="form-control border-start-0" placeholder="Drop-off location" required />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="pickUpdate" class="form-label">Pick-up Date</label>
+                    <input id="pickUpdate" class="form-control" type="date" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="pickUptime" class="form-label">Pick-up Time</label>
+                    <input id="pickUptime" class="form-control" type="time" required />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="dropOffdate" class="form-label">Drop-off Date</label>
+                    <input id="dropOffdate" class="form-control" type="date" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="dropOfftime" class="form-label">Drop-off Time</label>
+                    <input id="dropOfftime" class="form-control" type="time" required />
+                  </div>
+
+                  <div class="col-12 mt-4">
+                    <button class="find-button w-100" type="submit">
+                      Find Available Cars
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="container my-5 py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold display-5">Why Choose Us</h2>
+        <p class="lead text-muted">
+          We provide the best car rental experience
+        </p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4">
+            <div class="card-body text-center">
+              <i class="bi bi-speedometer2 feature-icon"></i>
+              <h3 class="h4 fw-bold mb-3">Wide Selection</h3>
+              <p class="text-muted">
+                Choose from our extensive fleet of vehicles for every need and
+                budget, from compact cars to luxury SUVs.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4">
+            <div class="card-body text-center">
+              <i class="bi bi-cash-coin feature-icon"></i>
+              <h3 class="h4 fw-bold mb-3">Best Prices</h3>
+              <p class="text-muted">
+                Competitive rates with no hidden fees. Our price match
+                guarantee ensures you get the best deal available.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4">
+            <div class="card-body text-center">
+              <i class="bi bi-headset feature-icon"></i>
+              <h3 class="h4 fw-bold mb-3">24/7 Support</h3>
+              <p class="text-muted">
+                Our dedicated customer service team is available around the
+                clock to assist you with any questions or issues.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Login/Register Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title " id="authModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex justify-content-center ">
+          <div id="loginForm" class="auth-form w-75">
+            <form id="loginFormSubmit">
+              <div class="mb-3">
+                <input type="email" class="form-control" id="loginEmail" placeholder="✉️ Email" />
+                <p id="emailErrorMsg" class="d-none text-danger">You have to enter a vaild email</p>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control " id="loginPassword" placeholder="🔒password" />
+                <p id="passwordErrorMsg" class="d-none text-danger">Invalid password</p>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Login
+              </button>
+            </form>
+            <p class="mt-3 text-center ">Don't have account? <a href="#" class="cursor-pointer"
+                id="showRegister">Register</a>
+            </p>
+          </div>
+
+
+          <div id="registerForm" class="auth-form d-none w-75">
+            <form id="registerFormSubmit">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="registerName" placeholder="🧑🏼Enter your name" />
+                <p id="nameErrorMsg" class="d-none text-danger">You have to enter your name</p>
+              </div>
+              <div class="mb-3">
+                <input type="email" class="form-control" id="registerEmail" placeholder="✉️Enter your email" />
+                <p id="registerEmailErrorMsg" class="d-none text-danger">You have to enter a vaild email</p>
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control" id="registerPassword" placeholder="🔒Enter password" />
+                <p id="registerPasswordErrorMsg" class="d-none text-danger">You have to enter a vaild password </p>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Register
+              </button>
+            </form>
+            <p class="mt-3 text-center ">already have account? <a href="#" class=" cursor-pointer"
+                id="showLogin">login</a>
+            </p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2025 Car Rental. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+  <script src="/Authentication/js/user.js"></script>
+  <script>
+    function viewCars() {
+      window.location.href = "/CarListings/carlist.html";
+    }
+  </script>
+  <script type="module" src="/Authentication/js/view.js"></script>
+</body>
+
 </html>
