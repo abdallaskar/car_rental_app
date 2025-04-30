@@ -50,10 +50,9 @@ controlDateView(); // disables previous dates from today .
                     car.id,
                     car.brand,
                     car.model);
-              
                   handleBook.addBooking(newBooking);
                   handleCar.markCarAsBooked(car.id);
-                
+                  
                 // On submission retrieve the id of the booked car from localStorage and update the main car object.
                 handleCar.markCarAsBooked(bookedCarId); 
                 popupModal("pop",newBooking);
