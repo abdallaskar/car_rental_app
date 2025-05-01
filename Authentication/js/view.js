@@ -137,11 +137,21 @@ document.getElementById("loginFormSubmit").addEventListener("submit", (e) => {
     return;
   }
 
-  if (!handleUser.searchUserUsingEmail(email)) {
+  // Check if user exists
+  const userIndex = handleUser.searchUserUsingEmail(email);
+  if (userIndex === -1) {
+    emailErrorMsg.textContent = "User does not exist";
     emailErrorMsg.classList.remove("d-none");
-  } else if (!handleUser.isValidPassword(email, password)) {
-    passwordErrorMsg.classList.remove("d-none");
+    return;
   }
+
+  // Check if password is valid
+  if (!handleUser.isValidPassword(email, password)) {
+    passwordErrorMsg.textContent = "Incorrect password";
+    passwordErrorMsg.classList.remove("d-none");
+    return;
+  }
+
   const currentUser = handleUser.getUserUsingEmail(email);
 
   if (email === "admin@car-rental.com" && password === "admin123") {
