@@ -1,5 +1,12 @@
 export class GeneralBooking {
-  constructor(pickupLocation, pickupDate, pickupTime, dropoffLocation, dropoffDate, DropoffTime) {
+  constructor(
+    pickupLocation,
+    pickupDate,
+    pickupTime,
+    dropoffLocation,
+    dropoffDate,
+    DropoffTime
+  ) {
     this.pickupLocation = pickupLocation;
     this.pickupDate = pickupDate;
     this.pickupTime = pickupTime;
@@ -10,8 +17,30 @@ export class GeneralBooking {
 }
 
 export class BookingForm extends GeneralBooking {
-  constructor(pickupLocation,pickupDate,pickupTime,dropoffLocation,dropoffDate,DropoffTime,firstName,lastName,phoneNumber,email,carId,brand,model,bookingId) {
-    super(pickupLocation, pickupDate, pickupTime, dropoffLocation, dropoffDate, DropoffTime);
+  constructor(
+    pickupLocation,
+    pickupDate,
+    pickupTime,
+    dropoffLocation,
+    dropoffDate,
+    DropoffTime,
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    carId,
+    brand,
+    model,
+    bookingId
+  ) {
+    super(
+      pickupLocation,
+      pickupDate,
+      pickupTime,
+      dropoffLocation,
+      dropoffDate,
+      DropoffTime
+    );
     // this.pickupLocation = pickupLocation;
     // this.pickupDate = pickupDate;
     // this.pickupTime = pickupTime;
