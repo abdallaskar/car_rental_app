@@ -1,69 +1,117 @@
 import { controlDateView } from "./JS/controller.js";
-import { BookingForm } from "./JS/Model.js";
 import { popupModal } from "./JS/utils.js";
-import { generateCarForm, changeCar } from "./JS/utils.js";
+import { validateFirstName,validateLastName,validateEmail,validatePhone,validateLocation} from "../utils/validation.js";
+import {changeCar} from "./JS/utils.js"; //generateCarForm,
 import Controller from "../CarListings/JS/controller.js";
 import handleCar from "../CarListings/JS/controller-instance.js";
 import handleBook from "./JS/bookingController-instance.js";
 
-controlDateView(); // disables previous dates from today .
 
-const form = document.getElementById("bookingForm");
-const General = JSON.parse(sessionStorage.getItem("GeneralBookingData"));
-const bookedCarId = JSON.parse(sessionStorage.getItem("bookedCarId")); //retrieved the id of the car booked stored in sessionStorage .
-//I used session storage so as when the user closes the site then opens it --> booked be clear .
-const Bcar = new Controller();
-const car = Bcar.findCarById(bookedCarId); // used the id to retrieve the car with that id and show some of its data on the form .
+    document.addEventListener('DOMContentLoaded',function(){
+        controlDateView(); // disables previous dates from today .
 
-document.addEventListener("DOMContentLoaded", function () {
-  generateCarForm();
-  if (General) {
-    document.querySelector('input[placeholder="pick up location"]').value =
-      General.pickupLocation;
-    document.querySelector('input[placeholder="Drop Off location"]').value =
-      General.dropoffLocation;
-    document.getElementById("pickUpdate").value = General.pickupDate;
-    document.getElementById("pickUptime").value = General.pickupTime;
-    document.getElementById("dropOffdate").value = General.dropoffDate;
-    document.getElementById("dropOfftime").value = General.DropoffTime;
-  }
-  if (car) {
-    console.log(car); // the id of the car
-    document.getElementById("brandSelect").value = car.brand;
-    document.getElementById("modelSelect").value = car.model;
-  }
+        //events that handels change car btn .
+        const changeCarbtn = document.getElementById("ChangeCar");
+        changeCarbtn.addEventListener("click",changeCar);
+    
+    const form = document.getElementById("bookingForm");
+    const General =JSON.parse(sessionStorage.getItem("GeneralBookingData"));
+    
+    const bookedCarId = JSON.parse(sessionStorage.getItem("bookedCarId")); //retrieved the id of the car booked stored in sessionStorage .
+                                                                           //I used session storage so as when the user closes the site then opens it --> booked be clear . 
+    const Bcar = new Controller();
+    const car = Bcar.findCarById(bookedCarId) ; // used the id to retrieve the car with that id and show some of its data on the form .
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const newBooking = handleBook.createBooking(
-      document.querySelector('input[placeholder="pick up location"]').value,
-      document.getElementById("pickUpdate").value,
-      document.getElementById("pickUptime").value,
-      document.querySelector('input[placeholder="Drop Off location"]').value,
-      document.getElementById("dropOffdate").value,
-      document.getElementById("dropOfftime").value,
-      document.getElementById("fname").value,
-      document.getElementById("lname").value,
-      document.getElementById("phone").value,
-      document.getElementById("email").value,
-      car.id,
-      car.brand,
-      car.model
-    );
-    handleBook.addBooking(newBooking);
-    handleCar.markCarAsBooked(car.id);
+      
 
-    // On submission retrieve the id of the booked car from localStorage and update the main car object.
-    handleCar.markCarAsBooked(bookedCarId);
-    popupModal("pop", newBooking);
-    setTimeout(() => {
-      form.reset();
-      sessionStorage.removeItem("bookedCarId"); // so when the user click back button after submission --> no car data to be selected .
-    }, 5000);
-  });
-});
-const changeCarbtn = document.getElementById("ChangeCar");
-changeCarbtn.addEventListener("click", changeCar);
+        document.getElementById("fname").addEventListener("input",()=> validateFirstName("fname","fname-error"));
+        document.getElementById("lname").addEventListener("input",()=> validateLastName("lname","lname-error"));
+        document.getElementById("email").addEventListener("input",()=> validateEmail("email","email-error"));
+        document.getElementById("phone").addEventListener("input", ()=>validatePhone("phone","phone-error"));
+        document.getElementById('pickupL').addEventListener("input",()=>validateLocation('pickupL','pickupL-error'));
+        document.getElementById("dropOffL").addEventListener("input",()=>validateLocation("dropOffL","dropOffL-error"));
+                // generateCarForm();
+                if(General) {
+                    document.getElementById('pickupL').value = General.pickUpLocation;
+                    document.getElementById('dropOffL').value = General.dropOffLocation; 
+                    document.getElementById("pickUpdate").value = General. pickUpDate;
+                    document.getElementById("pickUptime").value = General.pickUpTime;
+                    document.getElementById("dropOffdate").value = General.dropOffDate;
+                    document.getElementById("dropOfftime").value = General.dropOffTime;
+                    
+                }
+                if (car) {
+                    console.log(car); // the id of the car 
+                    document.getElementById("brandSelect").value=car.brand;
+                    document.getElementById("modelSelect").value=car.model;
+                }
+       
+        
+            form.addEventListener("submit",function(event){
+                const isFirstNameValid = validateFirstName("fname","fname-error");
+                const isLastNameValid = validateLastName("lname","lname-error");
+                const isEmailValid = validateEmail("email","email-error");
+                const isPhoneValid = validatePhone("phone","phone-error");
+                const isPickupLocationValid = validateLocation('pickupL','pickupL-error');
+                const isDropoffLocationValid = validateLocation("dropOffL","dropOffL-error");
+                if (!(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneValid && isPickupLocationValid && isDropoffLocationValid)) {
+                    event.preventDefault();
+                    return;
+                  }
+                  event.preventDefault();
+                    const newBooking = handleBook.createBooking(
+                        document.getElementById('pickupL').value,
+                        document.getElementById("pickUpdate").value,
+                        document.getElementById("pickUptime").value,
+                        document.getElementById('dropOffL').value,
+                        document.getElementById("dropOffdate").value,
+                        document.getElementById("dropOfftime").value,
+                        document.getElementById("fname").value,
+                        document.getElementById("lname").value,
+                        document.getElementById("phone").value,
+                        document.getElementById("email").value,
+                        car.id,
+                        car.brand,
+                        car.model);
+                      handleBook.addBooking(newBooking);
+                    //   handleCar.markCarAsBooked(car.id);
+                    // On submission retrieve the id of the booked car from localStorage and update the main car object.
+                    handleCar.markCarAsBooked(bookedCarId); 
+                    // sessionStorage.setItem('latestBooking', JSON.stringify(newBooking));
+                    popupModal("pop",newBooking);
+                    // window.location.href="summary.html";
+                        form.reset();
+                        sessionStorage.removeItem("bookedCarId");// so when the user click back button after submission --> no car data to be selected .
+         
+
+            });
+    });
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function closePopup() {
 // document.getElementById("customPopup").classList.add("d-none");
