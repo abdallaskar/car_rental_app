@@ -1,5 +1,5 @@
 import { controlDateView } from "../../Booking/JS/controller.js";
-import { validateLocation } from "./utils/validation.js";
+import { validateLocation } from "../../utils/validation.js";
 
 // import User from "./Authentication/js/user.js";
 import { validateEmail, validateName, validatePassword } from "./utils.js";
