@@ -25,6 +25,7 @@ class BookingController {
             booking.brand,
             booking.model,
             booking.bookingId,
+            booking.totalCost,
             booking.status || "Active"
           )
       );
@@ -60,6 +61,7 @@ class BookingController {
     carId,
     brand,
     model,
+    totalCost,
     status = "Active"
   ) {
     const bookingId = this.generateUniqueId();
@@ -78,6 +80,7 @@ class BookingController {
       brand,
       model,
       bookingId,
+      totalCost,
       status
     );
   }
@@ -112,6 +115,13 @@ class BookingController {
     return filtered.length > 0
       ? filtered
       : `No bookings found for this brand name`;
+  }
+
+  getBookingById(bookingId) {
+    const booking = this.bookings.find(
+      (booking) => booking.bookingId === bookingId
+    );
+    return booking || null;
   }
 }
 

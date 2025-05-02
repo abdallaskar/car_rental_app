@@ -14,6 +14,7 @@ export class BookingForm {
     brand,
     model,
     bookingId,
+    totalCost,
     status = "Active"
   ) {
     this.pickupLocation = pickupLocation;
@@ -30,6 +31,7 @@ export class BookingForm {
     this.brand = brand;
     this.model = model;
     this.bookingId = bookingId;
+    this.totalCost = totalCost;
     this.status = status;
   }
 }
