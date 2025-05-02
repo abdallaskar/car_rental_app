@@ -1,5 +1,5 @@
 import { controlDateView } from "../../Booking/JS/controller.js";
-import { validateLocation } from "../../utils/validation.js";
+import { validateLocation,validateDropoffDate,validateDropoffTime,validatePickupDate,validatePickupTime } from "../../utils/validation.js";
 
 // import User from "./Authentication/js/user.js";
 import { validateEmail, validateName, validatePassword } from "./utils.js";
@@ -8,53 +8,53 @@ import Controller from "./controller.js";
 document.addEventListener("DOMContentLoaded", function () {
   const handleUser = new Controller();
 
-  controlDateView();
-  document
-    .getElementById("pickupL")
-    .addEventListener("input", () =>
-      validateLocation("pickupL", "pickupL-error")
-    );
-  document
-    .getElementById("dropOffL")
-    .addEventListener("input", () =>
-      validateLocation("dropOffL", "dropOffL-error")
-    );
-  //getting values from GeneralBooking form present in the home page and scrolling  to carlist after submission  .
-  const form = document.getElementById("generalBooking");
-  form.addEventListener("submit", function (event) {
-    const isPickupLocationValid = validateLocation("pickupL", "pickupL-error");
-    const isDropoffLocationValid = validateLocation(
-      "dropOffL",
-      "dropOffL-error"
-    );
-    if (!(isPickupLocationValid && isDropoffLocationValid)) {
-      event.preventDefault();
-      return;
-    } else {
-      event.preventDefault(); // to be able to show the modal .
-      // const mainContainer = document.getElementById("mainCarContainer");
-      const pickUpLocation = document.getElementById("pickupL").value;
-      const dropOffLocation = document.getElementById("dropOffL").value;
-      const pickUpDate = document.getElementById("pickUpdate").value;
-      const pickUpTime = document.getElementById("pickUptime").value;
-      const dropOffDate = document.getElementById("dropOffdate").value;
-      const dropOffTime = document.getElementById("dropOfftime").value;
-      let book = {
-        pickUpLocation: pickUpLocation,
-        pickUpDate: pickUpDate,
-        pickUpTime: pickUpTime,
-        dropOffLocation: dropOffLocation,
-        dropOffDate: dropOffDate,
-        dropOffTime: dropOffTime,
-      };
-      sessionStorage.setItem("GeneralBookingData", JSON.stringify(book));
-      window.location.href = "CarListings/carlist.html";
-      // mainContainer.scrollIntoView({
-      //   behavior: "smooth", // Smooth scrolling
-      //   block: "start", // Align the section at the top of the page
-      // });
-    }
-  });
+controlDateView();
+document.getElementById('pickupL').addEventListener("input",()=>validateLocation('pickupL','pickupL-error'));
+document.getElementById("dropOffL").addEventListener("input",()=>validateLocation("dropOffL","dropOffL-error"));
+document.getElementById("pickUpdate").addEventListener("input",()=>validatePickupDate("pickUpdate","pickUpdate-error") );
+document.getElementById("pickUptime").addEventListener("input",()=>validatePickupTime("pickUptime","pickUptime-error"));
+document.getElementById("dropOffdate").addEventListener("input",()=>validateDropoffDate("dropOffdate","pickUpdate","dropOffdate-error"));
+document.getElementById("dropOfftime").addEventListener("input",()=>validateDropoffTime("dropOfftime","pickUptime","pickUpdate","pickUpdate","dropOfftime-error"));
+            
+//getting values from GeneralBooking form present in the home page and scrolling  to carlist after submission  .
+const form = document.getElementById("generalBooking");
+    form.addEventListener("submit", function (event) {
+      const isPickupLocationValid = validateLocation('pickupL','pickupL-error');
+      const isDropoffLocationValid = validateLocation("dropOffL","dropOffL-error");
+      const ispickupDateValid =validatePickupDate("pickUpdate","pickUpdate-error") ;
+      const ispickupTimeValid =validatePickupTime("pickUptime","pickUptime-error") ;
+      const isdropoffDateValid =validateDropoffDate("dropOffdate","pickUpdate","dropOffdate-error");
+      const isdropoffTimeValid =validateDropoffTime("dropOfftime","pickUptime","pickUpdate","pickUpdate","dropOfftime-error") ;
+    
+      if (!(isPickupLocationValid &&isDropoffLocationValid && ispickupDateValid && ispickupTimeValid && isdropoffDateValid && isdropoffTimeValid)){
+           event.preventDefault();
+           return;
+      }else{
+        event.preventDefault(); // to be able to show the modal .
+        // const mainContainer = document.getElementById("mainCarContainer");
+        const pickUpLocation = document.getElementById("pickupL").value;
+        const dropOffLocation = document.getElementById("dropOffL").value
+        const pickUpDate = document.getElementById("pickUpdate").value;
+        const pickUpTime = document.getElementById("pickUptime").value;
+        const dropOffDate = document.getElementById("dropOffdate").value;
+        const dropOffTime = document.getElementById("dropOfftime").value;
+        let book = {
+          pickUpLocation:pickUpLocation,
+          pickUpDate:pickUpDate ,
+          pickUpTime:pickUpTime,
+          dropOffLocation:dropOffLocation,
+          dropOffDate:dropOffDate,
+          dropOffTime:dropOffTime
+        };
+        sessionStorage.setItem("GeneralBookingData", JSON.stringify(book));
+        window.location.href="CarListings/carlist.html";
+        // mainContainer.scrollIntoView({
+        //   behavior: "smooth", // Smooth scrolling
+        //   block: "start", // Align the section at the top of the page
+        // });
+      }
+ 
+    });
 
   // Check if user is already logged in
   const authButton = document.getElementById("authButton");
@@ -188,15 +188,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show dashboard button and redirect if admin
 
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+  // colse the modal
+  const modalElement = document.getElementById("authModal");
+  const modalInstance = bootstrap.Modal.getInstance(modalElement);
+  
+  if (modalInstance) {
+    modalInstance.hide();
+  
+    // Ensure backdrop is removed
+    setTimeout(() => {
+      document.querySelector(".modal-backdrop")?.remove();
+      document.body.classList.remove("modal-open");
+      document.body.style = "";
+    }, 300); // Wait a bit for the animation to finish
+  }
+  
 
-    // Close modal
-    const modal = bootstrap.Modal.getInstance(
-      document.getElementById("authModal")
-    );
-    modal.hide();
-  });
+});
 });
 // Handle logout
 function logout() {

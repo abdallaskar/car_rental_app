@@ -1,6 +1,6 @@
 import { controlDateView } from "./JS/controller.js";
 import { popupModal } from "./JS/utils.js";
-import { validateFirstName,validateLastName,validateEmail,validatePhone,validateLocation} from "../utils/validation.js";
+import { validateFirstName,validateLastName,validateEmail,validatePhone,validateLocation,validatePickupDate,validatePickupTime,validateDropoffDate,validateDropoffTime} from "../utils/validation.js";
 import {changeCar} from "./JS/utils.js"; //generateCarForm,
 import Controller from "../CarListings/JS/controller.js";
 import handleCar from "../CarListings/JS/controller-instance.js";
@@ -31,6 +31,11 @@ import handleBook from "./JS/bookingController-instance.js";
         document.getElementById("phone").addEventListener("input", ()=>validatePhone("phone","phone-error"));
         document.getElementById('pickupL').addEventListener("input",()=>validateLocation('pickupL','pickupL-error'));
         document.getElementById("dropOffL").addEventListener("input",()=>validateLocation("dropOffL","dropOffL-error"));
+        document.getElementById("pickUpdate").addEventListener("input",()=>validatePickupDate("pickUpdate","pickUpdate-error") );
+        document.getElementById("pickUptime").addEventListener("input",()=>validatePickupTime("pickUptime","pickUptime-error"));
+        document.getElementById("dropOffdate").addEventListener("input",()=>validateDropoffDate("dropOffdate","pickUpdate","dropOffdate-error"));
+        document.getElementById("dropOfftime").addEventListener("input",()=>validateDropoffTime("dropOfftime","pickUptime","pickUpdate","pickUpdate","dropOfftime-error"));
+                    
                 // generateCarForm();
                 if(General) {
                     document.getElementById('pickupL').value = General.pickUpLocation;
@@ -59,7 +64,12 @@ import handleBook from "./JS/bookingController-instance.js";
                 const isPhoneValid = validatePhone("phone","phone-error");
                 const isPickupLocationValid = validateLocation('pickupL','pickupL-error');
                 const isDropoffLocationValid = validateLocation("dropOffL","dropOffL-error");
-                if (!(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneValid && isPickupLocationValid && isDropoffLocationValid)) {
+                const ispickupDateValid =validatePickupDate("pickUpdate","pickUpdate-error") ;
+                const ispickupTimeValid =validatePickupTime("pickUptime","pickUptime-error") ;
+                const isdropoffDateValid =validateDropoffDate("dropOffdate","pickUpdate","dropOffdate-error");
+                const isdropoffTimeValid =validateDropoffTime("dropOfftime","pickUptime","pickUpdate","pickUpdate","dropOfftime-error") ;
+                if (!(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneValid && isPickupLocationValid && isDropoffLocationValid && ispickupDateValid
+                     && ispickupTimeValid && isdropoffDateValid && isdropoffTimeValid)) {
                     event.preventDefault();
                     return;
                   }
@@ -85,8 +95,12 @@ import handleBook from "./JS/bookingController-instance.js";
                     // sessionStorage.setItem('latestBooking', JSON.stringify(newBooking));
                     popupModal("pop",newBooking);
                     // window.location.href="summary.html";
-                        form.reset();
-                        sessionStorage.removeItem("bookedCarId");// so when the user click back button after submission --> no car data to be selected .
+                    const toastEl = document.getElementById('successToast');
+                    const toast = new bootstrap.Toast(toastEl); // if using <script> not ES module
+                    toast.show();
+                    setTimeout(()=>{toast.hide();},1000);
+                    form.reset();
+                    sessionStorage.removeItem("bookedCarId");// so when the user click back button after submission --> no car data to be selected .
          
 
             });
