@@ -16,9 +16,7 @@ const sections = document.querySelectorAll(".main-content > .container-fluid");
 const totalCarsElement = document.getElementById("totalCars");
 const availableCarsElement = document.getElementById("availableCars");
 const bookedCarsElement = document.getElementById("bookedCars");
-const recentActivityTable = document
-  .getElementById("recentActivity")
-  .querySelector("tbody");
+
 const carsTable = document.getElementById("carsTable").querySelector("tbody");
 const bookingsTable = document
   .getElementById("bookingsTable")
@@ -46,9 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Load bookings table
   renderBookingsTable(handleBook, bookingsTable);
 
-  // Load recent activity
-  loadRecentActivity();
-
   // Initialize charts
   window.updateCharts(handleCar);
 
@@ -66,31 +61,6 @@ carsTable.addEventListener("click", function (e) {
     deleteCar(carId);
   }
 });
-
-function loadRecentActivity() {
-  recentActivityTable.innerHTML = "";
-  // Sample recent activity (in a real app, this would come from a database)
-  const activities = [
-    { car: "Toyota Camry", status: "Booked", time: "2 hours ago" },
-    { car: "Honda Civic", status: "Returned", time: "1 day ago" },
-    { car: "Ford Mustang", status: "Available", time: "2 days ago" },
-  ];
-  activities.forEach((activity) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${activity.car}</td>
-      <td><span class="badge ${
-        activity.status === "Booked"
-          ? "bg-danger"
-          : activity.status === "Returned"
-          ? "bg-success"
-          : "bg-primary"
-      }">${activity.status}</span></td>
-      <td>${activity.time}</td>
-    `;
-    recentActivityTable.appendChild(row);
-  });
-}
 
 function setupEventListeners() {
   // Sidebar toggle for mobile
