@@ -8,7 +8,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="booking.css">
 </head>
-<body>
+<body >
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Success</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        Your changes have been saved.
+      </div>
+    </div>
+  </div>
+  
     <main class="d-flex flex-sm-row justify-content-center align-items-center text-secondary  my-3">
         
         <form id="bookingForm" class="d-flex flex-wrap col-12 col-sm-9 col-md-7 col-lg-6 shadow py-4 px-2 ">
@@ -61,23 +74,23 @@
 
               <div class="col-6">
                 <label for="pickUpdate" class="form-label">Pick-up Date</label>
-                <input id="pickUpdate"class="form-control"type="date"required/>
+                <input id="pickUpdate"class="form-control"type="date"/>
                 <p id="pickUpdate-error"></p>
               </div>
               <div class="col-6">
                 <label for="pickUptime" class="form-label">Pick-up Time</label>
-                <input id="pickUptime"class="form-control "type="time" required/>
+                <input id="pickUptime"class="form-control "type="time" />
                 <p id="pickUptime-error"></p>
               </div>
 
               <div class="col-6">
                 <label for="dropOffdate" class="form-label">Drop-off Date</label>
-                <input id="dropOffdate"class="form-control"type="date"required/>
+                <input id="dropOffdate"class="form-control"type="date"/>
                 <p id="dropOffdate-error"></p>
               </div>
               <div class="col-6">
                 <label for="dropOfftime" class="form-label">Drop-off Time</label>
-                <input id="dropOfftime"class="form-control"type="time"required />
+                <input id="dropOfftime"class="form-control"type="time" />
                 <p id="dropOfftime-error"></p>
               </div>
 
