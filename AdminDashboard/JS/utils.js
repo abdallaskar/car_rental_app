@@ -29,27 +29,39 @@ export function renderCarsTable(handleCar, carsTable) {
   });
 }
 
-export function renderBookingsTable(handleCar, bookingsTable, bookings) {
+export function renderBookingsTable(
+  handleBook,
+  handleCar,
+  bookingsTable,
+  bookings
+) {
   bookingsTable.innerHTML = "";
 
   bookings.forEach((booking) => {
+    // Fetch car details using carId from the booking
     const car = handleCar.findCarById(booking.carId);
     const row = document.createElement("tr");
     row.innerHTML = `
-        <td>${booking.id}</td>
-        <td>${car ? `${car.brand} ${car.model}` : "Car not found"}</td>
-        <td>${booking.customer}</td>
-        <td>${booking.startDate}</td>
-        <td>${booking.endDate}</td>
-        <td>$${booking.totalPrice}</td>
-        <td><span class="badge ${
-          booking.status === "Active" ? "bg-primary" : "bg-success"
-        }">${booking.status}</span></td>
-        <td>
-          <button class="btn btn-sm btn-primary">View</button>
-          <button class="btn btn-sm btn-danger">Cancel</button>
-        </td>
-      `;
+      <td>${booking.bookingId}</td>
+      <td>${
+        booking ? `${booking.brand} ${booking.model}` : "Car not found"
+      }</td>
+      <td>${booking.firstName}</td>
+      <td>${booking.pickupDate}</td>
+      <td>${booking.dropoffDate}</td>
+      <td>$${booking.totalPrice || "N/A"}</td>
+      <td><span class="badge ${
+        booking.status === "Active" ? "bg-primary" : "bg-success"
+      }">${booking.status || "Active"}</span></td>
+      <td>
+        <button class="btn btn-sm btn-primary view-booking" data-id="${
+          booking.bookingId
+        }">View</button>
+        <button class="btn btn-sm btn-danger cancel-booking" data-id="${
+          booking.bookingId
+        }">Cancel</button>
+      </td>
+    `;
     bookingsTable.appendChild(row);
   });
 }

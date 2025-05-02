@@ -1,4 +1,5 @@
-import {BookingForm} from "./Model.js";
+import { BookingForm } from "./Model.js";
+import handleCar from "../../CarListings/JS/controller-instance.js";
 class BookingController {
   constructor() {
     this.bookings = this.loadBookingsFromStorage();
@@ -9,8 +10,23 @@ class BookingController {
     if (storedBookings) {
       return JSON.parse(storedBookings).map(
         (booking) =>
-          new BookingForm(booking.pickupLocation,booking.pickupDate,booking.pickupTime,booking.dropoffLocation,booking.dropoffDate,booking.dropoffTime,
-            booking.firstName,booking.lastName,booking.phoneNumber,booking.email,booking.carId,booking.brand,booking.model,booking.bookingId)
+          new BookingForm(
+            booking.pickupLocation,
+            booking.pickupDate,
+            booking.pickupTime,
+            booking.dropoffLocation,
+            booking.dropoffDate,
+            booking.dropoffTime,
+            booking.firstName,
+            booking.lastName,
+            booking.phoneNumber,
+            booking.email,
+            booking.carId,
+            booking.brand,
+            booking.model,
+            booking.bookingId,
+            booking.status || "Active"
+          )
       );
     }
     return [];
@@ -22,20 +38,50 @@ class BookingController {
 
   generateUniqueId() {
     if (this.bookings.length === 0) return 1; // Start at 1 if no bookings
-  
-    const maxId = Math.max(...this.bookings.map(booking => Number(booking.bookingId)));
-  
+
+    const maxId = Math.max(
+      ...this.bookings.map((booking) => Number(booking.bookingId))
+    );
+
     return maxId + 1; // Return next numeric ID
   }
 
-  createBooking(pickupLocation,pickupDate,pickupTime,dropoffLocation,dropoffDate,dropoffTime,firstName,
-    lastName,phoneNumber,email,carId,brand,model) {
-      const bookingId = this.generateUniqueId();
-      return new BookingForm(pickupLocation,pickupDate,pickupTime,dropoffLocation,dropoffDate,dropoffTime,
-        firstName,lastName,phoneNumber,email,carId,brand,model,bookingId);
-  
+  createBooking(
+    pickupLocation,
+    pickupDate,
+    pickupTime,
+    dropoffLocation,
+    dropoffDate,
+    dropoffTime,
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    carId,
+    brand,
+    model,
+    status = "Active"
+  ) {
+    const bookingId = this.generateUniqueId();
+    return new BookingForm(
+      pickupLocation,
+      pickupDate,
+      pickupTime,
+      dropoffLocation,
+      dropoffDate,
+      dropoffTime,
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      carId,
+      brand,
+      model,
+      bookingId,
+      status
+    );
   }
-  
+
   addBooking(booking) {
     this.bookings.push(booking);
     this.saveBookingsToStorage();
@@ -43,7 +89,7 @@ class BookingController {
   getAllBookings() {
     return this.bookings;
   }
-   removeBooking(bookingId) {
+  removeBooking(bookingId) {
     const index = this.bookings.findIndex(
       (booking) => booking.bookingId === bookingId
     );
@@ -57,43 +103,39 @@ class BookingController {
     const filtered = this.bookings.filter(
       (booking) => booking.email.toLowerCase() === email.toLowerCase()
     );
-    return filtered.length > 0 ? filtered : `No bookings found for this email`; 
+    return filtered.length > 0 ? filtered : `No bookings found for this email`;
   }
   getBookingsByBradName(brand) {
     const filtered = this.bookings.filter(
       (booking) => booking.brand.toLowerCase() === brand.toLowerCase()
     );
-    return filtered.length > 0 ? filtered : `No bookings found for this brand name`; 
+    return filtered.length > 0
+      ? filtered
+      : `No bookings found for this brand name`;
   }
 }
 
 export default BookingController;
 
-
-
-
-
-
-
 // Migration method for existing bookings
-  // migrateBookings(carController) {
-  //   this.bookings = this.bookings.map((booking) => {
-  //     if (!booking.carId) {
-  //       const car = carController.findCarByDetails(booking.brand, booking.model);
-  //       booking.carId = car ? car.id : null;
-  //     }
-  //     return booking;
-  //   });
-  //   this.saveBookingsToStorage();
-  // }
-   
-    // getBookingsBetweenDates(startDate, endDate) {
-  //   return this.bookings.filter((booking) => {
-  //     const pickupDate = new Date(booking.pickupDate);
-  //     return (
-  //       pickupDate >= new Date(startDate) && pickupDate <= new Date(endDate)
-  //     );
-  //   });
-  // }
+// migrateBookings(carController) {
+//   this.bookings = this.bookings.map((booking) => {
+//     if (!booking.carId) {
+//       const car = carController.findCarByDetails(booking.brand, booking.model);
+//       booking.carId = car ? car.id : null;
+//     }
+//     return booking;
+//   });
+//   this.saveBookingsToStorage();
+// }
 
-  // 
+// getBookingsBetweenDates(startDate, endDate) {
+//   return this.bookings.filter((booking) => {
+//     const pickupDate = new Date(booking.pickupDate);
+//     return (
+//       pickupDate >= new Date(startDate) && pickupDate <= new Date(endDate)
+//     );
+//   });
+// }
+
+//

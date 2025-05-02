@@ -1,6 +1,21 @@
-
 export class BookingForm {
-  constructor(pickupLocation,pickupDate,pickupTime,dropoffLocation,dropoffDate,dropoffTime,firstName,lastName,phoneNumber,email,carId,brand,model,bookingId) {
+  constructor(
+    pickupLocation,
+    pickupDate,
+    pickupTime,
+    dropoffLocation,
+    dropoffDate,
+    dropoffTime,
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    carId,
+    brand,
+    model,
+    bookingId,
+    status = "Active"
+  ) {
     this.pickupLocation = pickupLocation;
     this.pickupDate = pickupDate;
     this.pickupTime = pickupTime;
@@ -15,5 +30,6 @@ export class BookingForm {
     this.brand = brand;
     this.model = model;
     this.bookingId = bookingId;
+    this.status = status;
   }
 }
