@@ -7,6 +7,7 @@ import handleCar from "../CarListings/JS/controller-instance.js";
 import handleBook from "./JS/bookingController-instance.js";
 
 
+
     document.addEventListener('DOMContentLoaded',function(){
         controlDateView(); // disables previous dates from today .
 
@@ -16,7 +17,7 @@ import handleBook from "./JS/bookingController-instance.js";
     
     const form = document.getElementById("bookingForm");
     const General =JSON.parse(sessionStorage.getItem("GeneralBookingData"));
-    
+    const CurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
     const bookedCarId = JSON.parse(sessionStorage.getItem("bookedCarId")); //retrieved the id of the car booked stored in sessionStorage .
                                                                            //I used session storage so as when the user closes the site then opens it --> booked be clear . 
     const Bcar = new Controller();
@@ -44,6 +45,10 @@ import handleBook from "./JS/bookingController-instance.js";
                     console.log(car); // the id of the car 
                     document.getElementById("brandSelect").value=car.brand;
                     document.getElementById("modelSelect").value=car.model;
+                }
+                if(CurrentUser){
+                    document.getElementById("fname").value=CurrentUser.userName;
+                    document.getElementById("email").value=CurrentUser.email;
                 }
        
         

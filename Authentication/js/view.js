@@ -169,7 +169,7 @@ document.getElementById("loginFormSubmit").addEventListener("submit", (e) => {
   }
 
   document.getElementById("loginFormSubmit").reset();
-
+  
   // Update button to Logout
   authButton.textContent = "Logout";
   authButton.onclick = logout;
@@ -177,6 +177,7 @@ document.getElementById("loginFormSubmit").addEventListener("submit", (e) => {
   // Show dashboard button and redirect if admin
 
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
   // Close modal
   const modal = bootstrap.Modal.getInstance(
@@ -188,6 +189,7 @@ document.getElementById("loginFormSubmit").addEventListener("submit", (e) => {
 // Handle logout
 function logout() {
   localStorage.removeItem("currentUser");
+  sessionStorage.removeItem("currentUser");
   authButton.textContent = "Login/Register";
   authButton.onclick = null;
   authButton.setAttribute("data-bs-toggle", "modal");

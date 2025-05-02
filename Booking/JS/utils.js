@@ -5,7 +5,7 @@ export function popupModal(id,data){
   }
    let element = document.getElementById(id);
    element.innerHTML=`
-   <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content align-items-center">
         <div class="modal-header">
@@ -17,7 +17,7 @@ export function popupModal(id,data){
           <p><strong>Email:</strong> ${data.email}</p>
           <p><strong>Booked Car:</strong> ${data.brand} ${data.model}</p>
           <p><strong>Pick Up Data:</strong> ${data.pickupLocation}, in ${data.pickupDate} at ${data.pickupTime}</p>
-          <p><strong>Drop Off Data:</strong> ${data.dropoffLocation}, in ${data.dropoffDate} at ${data.DropoffTime}</p>
+          <p><strong>Drop Off Data:</strong> ${data.dropoffLocation}, in ${data.dropoffDate} at ${data.dropoffTime}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id='modalCloseBtn' ">Close</button>

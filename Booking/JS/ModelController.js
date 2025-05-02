@@ -9,8 +9,8 @@ class BookingController {
     if (storedBookings) {
       return JSON.parse(storedBookings).map(
         (booking) =>
-          new BookingForm(booking.pickupLocation,booking.pickupDate,booking.pickupTime,booking.dropoffLocation,booking.dropoffDate,booking.DropoffTime,
-            booking.firstName,booking.lastName,booking.phoneNumber,booking.email,booking.carId,booking.brand,booking.model,booking.type,booking.bookingId)
+          new BookingForm(booking.pickupLocation,booking.pickupDate,booking.pickupTime,booking.dropoffLocation,booking.dropoffDate,booking.dropoffTime,
+            booking.firstName,booking.lastName,booking.phoneNumber,booking.email,booking.carId,booking.brand,booking.model,booking.bookingId)
       );
     }
     return [];
@@ -20,11 +20,19 @@ class BookingController {
     localStorage.setItem("bookings", JSON.stringify(this.bookings));
   }
 
+  generateUniqueId() {
+    if (this.bookings.length === 0) return 1; // Start at 1 if no bookings
+  
+    const maxId = Math.max(...this.bookings.map(booking => Number(booking.bookingId)));
+  
+    return maxId + 1; // Return next numeric ID
+  }
 
   createBooking(pickupLocation,pickupDate,pickupTime,dropoffLocation,dropoffDate,dropoffTime,firstName,
-    lastName,phoneNumber,email = "Not Provided",carId,brand,model) {
+    lastName,phoneNumber,email,carId,brand,model) {
+      const bookingId = this.generateUniqueId();
       return new BookingForm(pickupLocation,pickupDate,pickupTime,dropoffLocation,dropoffDate,dropoffTime,
-        firstName,lastName,phoneNumber,email,carId,brand,model);
+        firstName,lastName,phoneNumber,email,carId,brand,model,bookingId);
   
   }
   
