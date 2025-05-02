@@ -82,32 +82,37 @@
               <div class="col-lg-6 booking-form">
                 <div class="booking-card">
                   <h3 class="mb-4 text-center fw-bold">Book Your Car Now</h3>
+                  <!-- FORM START -->
                   <form id="generalBooking" class="row g-3">
                     <div class="col-md-6">
                       <div class="input-group">
                         <span class="input-group-text bg-white border-end-0">
                           <i class="bi bi-geo-alt-fill text-primary"></i>
                         </span>
-                        <input id="pickupL"
+                        <input
+                          id="pickupL"
                           type="text"
                           class="form-control border-start-0"
                           placeholder="Pick-up location"
                           required
                         />
                       </div>
+                      <p id="pickupL-error"></p>
                     </div>
                     <div class="col-md-6">
                       <div class="input-group">
                         <span class="input-group-text bg-white border-end-0">
                           <i class="bi bi-geo-alt-fill text-primary"></i>
                         </span>
-                        <input id="dropOffL"
+                        <input
+                          id="dropOffL"
                           type="text"
                           class="form-control border-start-0"
                           placeholder="Drop-off location"
                           required
                         />
                       </div>
+                      <p id="dropOffL-error"></p>
                     </div>
 
                     <div class="col-md-6">
@@ -120,6 +125,7 @@
                         type="date"
                         required
                       />
+                      <p id="pickUpdate-error"></p>
                     </div>
                     <div class="col-md-6">
                       <label for="pickUptime" class="form-label"
@@ -131,6 +137,7 @@
                         type="time"
                         required
                       />
+                      <p id="pickUptime-error"></p>
                     </div>
 
                     <div class="col-md-6">
@@ -143,6 +150,7 @@
                         type="date"
                         required
                       />
+                      <p id="dropOffdate-error"></p>
                     </div>
                     <div class="col-md-6">
                       <label for="dropOfftime" class="form-label"
@@ -154,10 +162,15 @@
                         type="time"
                         required
                       />
+                      <p id="dropOfftime-error"></p>
                     </div>
 
                     <div class="col-12 mt-4">
-                      <button id="findCarbtn" class="find-button w-100" type="submit">
+                      <button
+                        id="findCarbtn"
+                        class="find-button w-100"
+                        type="submit"
+                      >
                         Find Available Cars
                       </button>
                     </div>
@@ -234,6 +247,6 @@
       }
     </script>
     <!-- Added js code of the book section in the home page -->
-    <script type="module" src="home.js"></script> 
+    <script type="module" src="home.js"></script>
   </body>
 </html>

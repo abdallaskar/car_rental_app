@@ -1,6 +1,9 @@
 .body {
     overflow-x: hidden;
 }
+main {
+    padding: 3rem 0;
+}
 .rel-parent {
     position: relative;
 }
@@ -40,7 +43,10 @@ border-radius: 7px;
     text-align: center;
     color: black;
 }
-
+#confirmbtn {
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+}
 /* CUSTOM POP UP MESSAGE */
 .custom-popup {
     position: fixed;
@@ -72,3 +78,29 @@ border-radius: 7px;
   }
 /* END CUSTOM POP UP */
 
+@media screen and (max-width: 216px){
+    #bookingForm .form-btns{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+}
+@media screen and (max-width:312px){
+    main {
+        padding: 0px;
+    }
+    #bookingForm {
+        flex-direction: column;
+  
+    }
+    #bookingForm .col-6{
+        width: 100%;
+    }
+    /* #bookingForm .form-btns {
+        
+    } */
+    #confirmbtn{
+        margin-left: 0px;
+        margin-right: 6px;
+    }
+}
