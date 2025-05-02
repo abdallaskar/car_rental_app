@@ -40,10 +40,17 @@ class BookingController {
     this.bookings.push(booking);
     this.saveBookingsToStorage();
   }
-
-
   getAllBookings() {
     return this.bookings;
+  }
+   removeBooking(bookingId) {
+    const index = this.bookings.findIndex(
+      (booking) => booking.bookingId === bookingId
+    );
+    if (index !== -1) {
+      this.bookings.splice(index, 1);
+      this.saveBookingsToStorage();
+    }
   }
 
   getBookingsByEmail(email) {
@@ -67,10 +74,7 @@ export default BookingController;
 
 
 
-  // generateNewId() {
-  //   if (this.bookings.length === 0) return 1;
-  //   return Math.max(...this.bookings.map((booking) => booking.bookingId)) + 1;
-  // }
+
 // Migration method for existing bookings
   // migrateBookings(carController) {
   //   this.bookings = this.bookings.map((booking) => {
@@ -82,15 +86,7 @@ export default BookingController;
   //   });
   //   this.saveBookingsToStorage();
   // }
-    // removeBooking(bookingId) {
-  //   const index = this.bookings.findIndex(
-  //     (booking) => booking.bookingId === bookingId
-  //   );
-  //   if (index !== -1) {
-  //     this.bookings.splice(index, 1);
-  //     this.saveBookingsToStorage();
-  //   }
-  // }
+   
     // getBookingsBetweenDates(startDate, endDate) {
   //   return this.bookings.filter((booking) => {
   //     const pickupDate = new Date(booking.pickupDate);
