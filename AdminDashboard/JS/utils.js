@@ -29,17 +29,12 @@ export function renderCarsTable(handleCar, carsTable) {
   });
 }
 
-export function renderBookingsTable(
-  handleBook,
-  handleCar,
-  bookingsTable,
-  bookings
-) {
+export function renderBookingsTable(handleBook, bookingsTable) {
   bookingsTable.innerHTML = "";
-
+  const bookings = handleBook.getAllBookings();
   bookings.forEach((booking) => {
     // Fetch car details using carId from the booking
-    const car = handleCar.findCarById(booking.carId);
+
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${booking.bookingId}</td>
@@ -49,9 +44,9 @@ export function renderBookingsTable(
       <td>${booking.firstName}</td>
       <td>${booking.pickupDate}</td>
       <td>${booking.dropoffDate}</td>
-      <td>$${booking.totalPrice || "N/A"}</td>
+      <td>$${booking.totalCost || "N/A"}</td>
       <td><span class="badge ${
-        booking.status === "Active" ? "bg-primary" : "bg-success"
+        booking.status === "Active" ? "bg-success" : "bg-primary"
       }">${booking.status || "Active"}</span></td>
       <td>
         <button class="btn btn-sm btn-primary view-booking" data-id="${

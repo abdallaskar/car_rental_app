@@ -12,7 +12,7 @@ const sidebarToggle = document.getElementById("sidebarToggle");
 const sidebar = document.querySelector(".sidebar");
 const mainContent = document.querySelector(".main-content");
 const navLinks = document.querySelectorAll(".sidebar .nav-link");
-const sections = document.querySelectorAll(".container-fluid");
+const sections = document.querySelectorAll(".main-content > .container-fluid");
 const totalCarsElement = document.getElementById("totalCars");
 const availableCarsElement = document.getElementById("availableCars");
 const bookedCarsElement = document.getElementById("bookedCars");
@@ -44,15 +44,13 @@ document.addEventListener("DOMContentLoaded", function () {
   renderCarsTable(handleCar, carsTable);
 
   // Load bookings table
-  renderBookingsTable(
-    handleBook,
-    handleCar,
-    bookingsTable,
-    handleBook.getAllBookings()
-  );
+  renderBookingsTable(handleBook, bookingsTable);
 
   // Load recent activity
   loadRecentActivity();
+
+  // Initialize charts
+  window.updateCharts(handleCar);
 
   // Set up event listeners
   setupEventListeners();
@@ -155,7 +153,6 @@ function setupEventListeners() {
       document.getElementById("addCarForm").reset();
 
       // Update UI
-      bookedCarsElement;
       renderDashboardStats(
         handleCar,
         totalCarsElement,
@@ -163,6 +160,9 @@ function setupEventListeners() {
         bookedCarsElement
       );
       renderCarsTable(handleCar, carsTable);
+      // Update charts
+
+      window.updateCharts(handleCar);
       // Show success message
       alert("Car added successfully!");
     } catch (error) {
@@ -210,9 +210,9 @@ function setupEventListeners() {
         bookedCarsElement
       );
       renderCarsTable(handleCar, carsTable);
+      // Update charts
 
-      // Show success message
-      // alert("Car updated successfully!");
+      window.updateCharts(handleCar);
     }
   });
 }
@@ -300,12 +300,7 @@ function cancelBooking(bookingId) {
       }
     }
     // Refresh UI
-    renderBookingsTable(
-      handleBook,
-      handleCar,
-      bookingsTable,
-      handleBook.getAllBookings()
-    );
+    renderBookingsTable(handleBook, bookingsTable);
     renderDashboardStats(
       handleCar,
       totalCarsElement,
