@@ -1,4 +1,4 @@
-import { validateDropoffDate,validatePickupDate } from "../../utils/validation.js";
+// import { validateDropoffDate,validatePickupDate } from "./validation.js";
 export function controlDateView() {
   const pickupDateInput = document.getElementById("pickUpdate");
   const pickupTimeInput = document.getElementById("pickUptime");
@@ -11,17 +11,16 @@ export function controlDateView() {
   pickupDateInput.addEventListener("change", () => {
     const pickupDate = pickupDateInput.value;
     dropoffDateInput.setAttribute("min", pickupDate); // enforce dropoff >= pickup
-    // // Clear drop-off time if dates change
-    // dropoffTimeInput.value = "";
   });
-
+ 
   pickupTimeInput.addEventListener("change", () => {
     if (pickupDateInput.value === dropoffDateInput.value) {
-      dropoffTimeInput.setAttribute("min", pickupTimeInput.value); // enforce dropoff time > pickup time
+      dropoffTimeInput.setAttribute("min", pickupTimeInput.value); 
     } else {
       dropoffTimeInput.removeAttribute("min");
     }
   });
+  
 
   if (pickupDateInput.value === dropoffDateInput.value) {
     dropoffTimeInput.setAttribute("min", pickupTimeInput.value);
@@ -39,7 +38,7 @@ export function calculateTotalPrice(pickupDate, dropoffDate, rentalPrice) {
   const timeDiff = dropoff - pickup;
   const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Convert ms to days
 
-  // If days difference is 0 or 1, return the rental price as is
+  // If days difference is 0 or 1, return the rental price as it is
   if (daysDiff <= 1) {
     return rentalPrice;
   }
@@ -50,7 +49,14 @@ export function calculateTotalPrice(pickupDate, dropoffDate, rentalPrice) {
 export  function updateTotalPrice(car) {
     const pickUpDate = document.getElementById("pickUpdate").value;
     const dropOffDate = document.getElementById("dropOffdate").value;
+   
+    if (pickUpDate&&dropOffDate){
       const totalCost = calculateTotalPrice(pickUpDate, dropOffDate, car.rental_price);
       document.getElementById("totalPrice").value = `$${totalCost}`;
+    }
+    else {
+      document.getElementById("totalPrice").value = "";
+    }
+      
 }
  

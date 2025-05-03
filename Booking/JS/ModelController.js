@@ -1,5 +1,4 @@
 import { BookingForm } from "./Model.js";
-import handleCar from "../../CarListings/JS/controller-instance.js";
 class BookingController {
   constructor() {
     this.bookings = this.loadBookingsFromStorage();
@@ -127,25 +126,3 @@ class BookingController {
 
 export default BookingController;
 
-// Migration method for existing bookings
-// migrateBookings(carController) {
-//   this.bookings = this.bookings.map((booking) => {
-//     if (!booking.carId) {
-//       const car = carController.findCarByDetails(booking.brand, booking.model);
-//       booking.carId = car ? car.id : null;
-//     }
-//     return booking;
-//   });
-//   this.saveBookingsToStorage();
-// }
-
-// getBookingsBetweenDates(startDate, endDate) {
-//   return this.bookings.filter((booking) => {
-//     const pickupDate = new Date(booking.pickupDate);
-//     return (
-//       pickupDate >= new Date(startDate) && pickupDate <= new Date(endDate)
-//     );
-//   });
-// }
-
-//

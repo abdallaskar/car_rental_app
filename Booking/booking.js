@@ -1,6 +1,6 @@
 import { controlDateView, calculateTotalPrice,updateTotalPrice } from "./JS/controller.js";
 import { popupModal } from "./JS/utils.js";
-import {validateFirstName,validateLastName,validateEmail,validatePhone,validateLocation,validatePickupDate,validatePickupTime,validateDropoffDate,validateDropoffTime} from "../utils/validation.js";
+import {validateFirstName,validateLastName,validateEmail,validatePhone,validateLocation,validatePickupDate,validatePickupTime,validateDropoffDate,validateDropoffTime} from "./JS/validation.js";
 import { changeCar } from "./JS/utils.js"; //generateCarForm,
 import Controller from "../CarListings/JS/controller.js";
 import handleCar from "../CarListings/JS/controller-instance.js";
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     event.preventDefault();
-    // document.getElementById("totalPrice").value=`$${totalCost}`;
+
     const totalCost = calculateTotalPrice(document.getElementById("pickUpdate").value,document.getElementById("dropOffdate").value,car.rental_price);
     const newBooking = handleBook.createBooking(
       document.getElementById("pickupL").value,
