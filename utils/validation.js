@@ -203,25 +203,20 @@ export function validateLastName(lnameId,itsErrorMsgId) {
       dropTime.classList.add("is-invalid");
       return false;
     }
-  
-    if (
-      pickupDateVal &&
-      dropoffDateVal &&
-      pickupDateVal === dropoffDateVal &&
-      pickupTimeVal &&
-      dropTimeVal <= pickupTimeVal
-    ) {
-      error.textContent = "Drop-off time must be after pickup time.";
-      dropTime.classList.add("is-invalid");
-      return false;
-    }
-  
+ if(pickupDateVal===dropoffDateVal){
+  if (dropTimeVal<pickupTimeVal){
+
+    error.textContent = "Drop-off time must be after pickup time.";
+    dropTime.classList.add("is-invalid");
+    return false;
+  }
+ }
     error.textContent = "";
     dropTime.classList.remove("is-invalid");
     dropTime.classList.add("is-valid");
     return true;
   }
-  
+
   
   
   

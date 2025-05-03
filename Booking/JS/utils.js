@@ -18,6 +18,8 @@ export function popupModal(id,data){
           <p><strong>Booked Car:</strong> ${data.brand} ${data.model}</p>
           <p><strong>Pick Up Data:</strong> ${data.pickupLocation}, in ${data.pickupDate} at ${data.pickupTime}</p>
           <p><strong>Drop Off Data:</strong> ${data.dropoffLocation}, in ${data.dropoffDate} at ${data.dropoffTime}</p>
+          <p><strong>Total Price:</strong> $${data.totalCost}</p>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id='modalCloseBtn' ">Close</button>

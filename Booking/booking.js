@@ -1,4 +1,4 @@
-import { controlDateView, calculateTotalPrice } from "./JS/controller.js";
+import { controlDateView, calculateTotalPrice,updateTotalPrice } from "./JS/controller.js";
 import { popupModal } from "./JS/utils.js";
 import {
   validateFirstName,
@@ -16,6 +16,8 @@ import Controller from "../CarListings/JS/controller.js";
 import handleCar from "../CarListings/JS/controller-instance.js";
 import handleBook from "./JS/bookingController-instance.js";
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   controlDateView(); // disables previous dates from today .
 
@@ -30,57 +32,20 @@ document.addEventListener("DOMContentLoaded", function () {
   //I used session storage so as when the user closes the site then opens it --> booked be clear .
   const Bcar = new Controller();
   const car = Bcar.findCarById(bookedCarId); // used the id to retrieve the car with that id and show some of its data on the form .
+  const totalCost = calculateTotalPrice(document.getElementById("pickUpdate").value,document.getElementById("dropOffdate").value,car.rental_price);
 
-  document
-    .getElementById("fname")
-    .addEventListener("input", () => validateFirstName("fname", "fname-error"));
-  document
-    .getElementById("lname")
-    .addEventListener("input", () => validateLastName("lname", "lname-error"));
-  document
-    .getElementById("email")
-    .addEventListener("input", () => validateEmail("email", "email-error"));
-  document
-    .getElementById("phone")
-    .addEventListener("input", () => validatePhone("phone", "phone-error"));
-  document
-    .getElementById("pickupL")
-    .addEventListener("input", () =>
-      validateLocation("pickupL", "pickupL-error")
-    );
-  document
-    .getElementById("dropOffL")
-    .addEventListener("input", () =>
-      validateLocation("dropOffL", "dropOffL-error")
-    );
-  document
-    .getElementById("pickUpdate")
-    .addEventListener("input", () =>
-      validatePickupDate("pickUpdate", "pickUpdate-error")
-    );
-  document
-    .getElementById("pickUptime")
-    .addEventListener("input", () =>
-      validatePickupTime("pickUptime", "pickUptime-error")
-    );
-  document
-    .getElementById("dropOffdate")
-    .addEventListener("input", () =>
-      validateDropoffDate("dropOffdate", "pickUpdate", "dropOffdate-error")
-    );
-  document
-    .getElementById("dropOfftime")
-    .addEventListener("input", () =>
-      validateDropoffTime(
-        "dropOfftime",
-        "pickUptime",
-        "pickUpdate",
-        "pickUpdate",
-        "dropOfftime-error"
-      )
-    );
+  document.getElementById("fname").addEventListener("input", () => validateFirstName("fname", "fname-error"));
+  document.getElementById("lname").addEventListener("input", () => validateLastName("lname", "lname-error"));
+  document.getElementById("email").addEventListener("input", () => validateEmail("email", "email-error"));
+  document.getElementById("phone").addEventListener("input", () => validatePhone("phone", "phone-error"));
+  document.getElementById("pickupL").addEventListener("input", () =>validateLocation("pickupL", "pickupL-error"));
+  document.getElementById("dropOffL").addEventListener("input", () => validateLocation("dropOffL", "dropOffL-error"));
+  document.getElementById("pickUpdate").addEventListener("input", () =>{updateTotalPrice(car);validatePickupDate("pickUpdate", "pickUpdate-error"); });
+  document.getElementById("pickUptime").addEventListener("input", () =>validatePickupTime("pickUptime", "pickUptime-error"));
+  document.getElementById("dropOffdate").addEventListener("input", () =>{updateTotalPrice(car);validateDropoffDate("dropOffdate", "pickUpdate", "dropOffdate-error")});
+  document.getElementById("dropOfftime").addEventListener("input", () =>validateDropoffTime("dropOfftime","pickUptime","pickUpdate","pickUpdate","dropOfftime-error") );
 
-  // generateCarForm();
+
   if (General) {
     document.getElementById("pickupL").value = General.pickUpLocation;
     document.getElementById("dropOffL").value = General.dropOffLocation;
@@ -88,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("pickUptime").value = General.pickUpTime;
     document.getElementById("dropOffdate").value = General.dropOffDate;
     document.getElementById("dropOfftime").value = General.dropOffTime;
+    updateTotalPrice(car);
   }
   if (car) {
     console.log(car); // the id of the car
@@ -105,53 +71,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const isEmailValid = validateEmail("email", "email-error");
     const isPhoneValid = validatePhone("phone", "phone-error");
     const isPickupLocationValid = validateLocation("pickupL", "pickupL-error");
-    const isDropoffLocationValid = validateLocation(
-      "dropOffL",
-      "dropOffL-error"
-    );
-    const ispickupDateValid = validatePickupDate(
-      "pickUpdate",
-      "pickUpdate-error"
-    );
-    const ispickupTimeValid = validatePickupTime(
-      "pickUptime",
-      "pickUptime-error"
-    );
-    const isdropoffDateValid = validateDropoffDate(
-      "dropOffdate",
-      "pickUpdate",
-      "dropOffdate-error"
-    );
-    const isdropoffTimeValid = validateDropoffTime(
-      "dropOfftime",
-      "pickUptime",
-      "pickUpdate",
-      "pickUpdate",
-      "dropOfftime-error"
-    );
-    if (
-      !(
-        isFirstNameValid &&
-        isLastNameValid &&
-        isEmailValid &&
-        isPhoneValid &&
-        isPickupLocationValid &&
-        isDropoffLocationValid &&
-        ispickupDateValid &&
-        ispickupTimeValid &&
-        isdropoffDateValid &&
-        isdropoffTimeValid
-      )
-    ) {
+    const isDropoffLocationValid = validateLocation("dropOffL","dropOffL-error");
+    const ispickupDateValid = validatePickupDate("pickUpdate","pickUpdate-error" );
+    const ispickupTimeValid = validatePickupTime("pickUptime","pickUptime-error");
+    const isdropoffDateValid = validateDropoffDate("dropOffdate","pickUpdate","dropOffdate-error");
+    const isdropoffTimeValid = validateDropoffTime("dropOfftime","pickUptime","pickUpdate","pickUpdate","dropOfftime-error");
+    if (!(isFirstNameValid &&isLastNameValid &&isEmailValid &&isPhoneValid &&isPickupLocationValid && isDropoffLocationValid &&
+        ispickupDateValid &&ispickupTimeValid &&isdropoffDateValid &&isdropoffTimeValid)) {
       event.preventDefault();
       return;
     }
     event.preventDefault();
-    const totalCost = calculateTotalPrice(
-      document.getElementById("pickUpdate").value,
-      document.getElementById("dropOffdate").value,
-      car.rental_price
-    );
+    // document.getElementById("totalPrice").value=`$${totalCost}`;
+    
     const newBooking = handleBook.createBooking(
       document.getElementById("pickupL").value,
       document.getElementById("pickUpdate").value,
@@ -169,14 +101,10 @@ document.addEventListener("DOMContentLoaded", function () {
       totalCost
     );
     handleBook.addBooking(newBooking);
-    //   handleCar.markCarAsBooked(car.id);
-    // On submission retrieve the id of the booked car from localStorage and update the main car object.
     handleCar.markCarAsBooked(bookedCarId);
-    // sessionStorage.setItem('latestBooking', JSON.stringify(newBooking));
     popupModal("pop", newBooking);
-    // window.location.href="summary.html";
     const toastEl = document.getElementById("successToast");
-    const toast = new bootstrap.Toast(toastEl); // if using <script> not ES module
+    const toast = new bootstrap.Toast(toastEl);
     toast.show();
     setTimeout(() => {
       toast.hide();
@@ -186,27 +114,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// function closePopup() {
-// document.getElementById("customPopup").classList.add("d-none");
-// }
-
-// function popup() {
-
-//     const bookingForm = document.getElementById('bookingForm');
-
-// // Select individual input fields
-//     const firstNameInput = document.getElementById('fname');
-//     const lastNameInput = document.getElementById('lname');
-//     const emailInput = document.getElementById('emil');
-//     const phoneInput = document.getElementById('phone');
-//     const pickUpLocationInput = bookingForm.querySelector('input[placeholder="pick up location"]');
-//     const dropOffLocationInput = bookingForm.querySelector('input[placeholder="Drop Off location"]');
-//     const message = `
-//      Pick-Up Location: ${pickUpLocation} <br>
-//      Drop-Off Location: ${dropOffLocation} <br>
-//     Pick-Up Date: ${pickUpDate} <br>
-//     Drop-Off Date: ${dropOffDate} <br>
-//     `;
-//     document.getElementById("popupMessage").innerHTML = message;
-//     document.getElementById("customPopup").classList.remove("d-none");
-// }

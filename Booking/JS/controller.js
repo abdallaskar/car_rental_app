@@ -1,3 +1,4 @@
+import { validateDropoffDate,validatePickupDate } from "../../utils/validation.js";
 export function controlDateView() {
   const pickupDateInput = document.getElementById("pickUpdate");
   const pickupTimeInput = document.getElementById("pickUptime");
@@ -46,3 +47,10 @@ export function calculateTotalPrice(pickupDate, dropoffDate, rentalPrice) {
   // Otherwise, multiply rental price by number of days
   return rentalPrice * daysDiff;
 }
+export  function updateTotalPrice(car) {
+    const pickUpDate = document.getElementById("pickUpdate").value;
+    const dropOffDate = document.getElementById("dropOffdate").value;
+      const totalCost = calculateTotalPrice(pickUpDate, dropOffDate, car.rental_price);
+      document.getElementById("totalPrice").value = `$${totalCost}`;
+}
+ 
