@@ -1,8 +1,5 @@
-import handleCar from "../../CarListings/JS/controller-instance.js";
 export function popupModal(id,data){
-  function goHome() {
-    window.location.href="../../home.html";
-  }
+
    let element = document.getElementById(id);
    element.innerHTML=`
    <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -33,34 +30,6 @@ export function popupModal(id,data){
       window.location.href = "../../home.html";
     });
 }
-
-// export function generateCarForm() {    // This function shows the brand in the form of html .
-//     const cars = handleCar.getCarsAvalible();  // Array of all available cars.
-   
-//     // Extract unique brands, models, and types using set and by using spread operator ==> convert set to an array.
-//     const brands = [...new Set(cars.map(car => car.brand))];
-//     const models = [...new Set(cars.map(car => car.model))];
-  
-//     //selects each select of brand , model .
-//     const brandSelect = document.getElementById('brandSelect');
-//     const modelSelect = document.getElementById('modelSelect');
-  
-//     //Car brand dropdown
-//     brands.forEach(brand => {
-//       const option = document.createElement('option');
-//       option.value = brand;
-//       option.textContent = brand;
-//       brandSelect.appendChild(option);
-//     });
-  
-//     // Car model dropdown
-//     models.forEach(model => {
-//       const option = document.createElement('option');
-//       option.value = model;
-//       option.textContent = model;
-//       modelSelect.appendChild(option);
-//     });
-//   }
   
  // BOOKING FUNCTIONALITY .
  export function navigateToBooking(car_id) {

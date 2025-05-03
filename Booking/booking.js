@@ -1,16 +1,6 @@
 import { controlDateView, calculateTotalPrice,updateTotalPrice } from "./JS/controller.js";
 import { popupModal } from "./JS/utils.js";
-import {
-  validateFirstName,
-  validateLastName,
-  validateEmail,
-  validatePhone,
-  validateLocation,
-  validatePickupDate,
-  validatePickupTime,
-  validateDropoffDate,
-  validateDropoffTime,
-} from "../utils/validation.js";
+import {validateFirstName,validateLastName,validateEmail,validatePhone,validateLocation,validatePickupDate,validatePickupTime,validateDropoffDate,validateDropoffTime} from "./JS/validation.js";
 import { changeCar } from "./JS/utils.js"; //generateCarForm,
 import Controller from "../CarListings/JS/controller.js";
 import handleCar from "../CarListings/JS/controller-instance.js";
@@ -32,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //I used session storage so as when the user closes the site then opens it --> booked be clear .
   const Bcar = new Controller();
   const car = Bcar.findCarById(bookedCarId); // used the id to retrieve the car with that id and show some of its data on the form .
-  const totalCost = calculateTotalPrice(document.getElementById("pickUpdate").value,document.getElementById("dropOffdate").value,car.rental_price);
 
   document.getElementById("fname").addEventListener("input", () => validateFirstName("fname", "fname-error"));
   document.getElementById("lname").addEventListener("input", () => validateLastName("lname", "lname-error"));
@@ -82,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     event.preventDefault();
-    // document.getElementById("totalPrice").value=`$${totalCost}`;
-    
+
+    const totalCost = calculateTotalPrice(document.getElementById("pickUpdate").value,document.getElementById("dropOffdate").value,car.rental_price);
     const newBooking = handleBook.createBooking(
       document.getElementById("pickupL").value,
       document.getElementById("pickUpdate").value,

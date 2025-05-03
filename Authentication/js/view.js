@@ -5,7 +5,7 @@ import {
   validateDropoffTime,
   validatePickupDate,
   validatePickupTime,
-} from "../../utils/validation.js";
+} from "../../Booking/JS/validation.js";
 
 // import User from "./Authentication/js/user.js";
 import { validateEmail, validateName, validatePassword } from "./utils.js";
@@ -112,10 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
       sessionStorage.setItem("GeneralBookingData", JSON.stringify(book));
       window.location.href = "CarListings/carlist.html";
-      // mainContainer.scrollIntoView({
-      //   behavior: "smooth", // Smooth scrolling
-      //   block: "start", // Align the section at the top of the page
-      // });
     }
   });
 
