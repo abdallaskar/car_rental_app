@@ -33,14 +33,16 @@ function renderCar(car, mainContainer) {
 //   window.location.href = "../Booking/booking.html";
 //   handleCar.markCarAsBooked(carId);
 // };
-
+("");
 // create card function to create card for each car
 function createCard(car) {
   return `
     <div class="col-md-4">
       <div class="card h-100 shadow-sm card-hover" role="button" data-bs-toggle="modal"
       data-bs-target="#${car.car_id}">
-      <img src="${car.url_img}" class="card-img-top" alt="${
+      <img src="../../AdminDashboard/Images/${
+        car.url_img
+      }" class="card-img-top" alt="${
     car.brand
   }" style="height: 300px; object-fit: cover;">
       <div class="card-body d-flex flex-column justify-content-between">
@@ -83,9 +85,9 @@ function createCardDetails(car) {
       <div class="row g-3 align-items-center">
         <!-- Product Image -->
         <div class="col-md-6">
-        <img src="${car.url_img}" alt="${car.brand} ${
-    car.model
-  }" class="img-fluid rounded">
+        <img src="../../AdminDashboard/Images/${car.url_img}" alt="${
+    car.brand
+  } ${car.model}" class="img-fluid rounded">
         </div>
         <!-- Product Details -->
         <div class="col-md-6 d-flex flex-column justify-content-center">
