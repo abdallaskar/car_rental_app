@@ -2,6 +2,7 @@ import {
   renderCarsTable,
   renderDashboardStats,
   renderBookingsTable,
+  validateCarForm,
 } from "./utils.js";
 import handleCar from "../../CarListings/JS/controller-instance.js";
 import { InitializeStaticCars } from "./adminController.js";
@@ -100,6 +101,11 @@ function setupEventListeners() {
     const image = document.getElementById("carImage").value;
     const description = document.getElementById("carDescription").value;
 
+    // Validate form
+    if (!validateCarForm(brand, model, price, year, false)) {
+      return;
+    }
+
     // Generate a new ID
     const newId =
       Math.max(...handleCar.getAllCars().map((car) => car.car_id), 0) + 1;
@@ -131,7 +137,6 @@ function setupEventListeners() {
       );
       renderCarsTable(handleCar, carsTable);
       // Update charts
-
       window.updateCharts(handleCar);
       // Show success message
       alert("Car added successfully!");
@@ -151,6 +156,11 @@ function setupEventListeners() {
     const image = document.getElementById("editCarImage").value;
     const description = document.getElementById("editCarDescription").value;
     const status = document.getElementById("editCarStatus").checked;
+
+    // Validate form
+    if (!validateCarForm(brand, model, price, year, true)) {
+      return;
+    }
 
     const car = handleCar.findCarById(id);
     if (car) {
@@ -181,7 +191,6 @@ function setupEventListeners() {
       );
       renderCarsTable(handleCar, carsTable);
       // Update charts
-
       window.updateCharts(handleCar);
     }
   });

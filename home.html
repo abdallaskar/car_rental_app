@@ -48,119 +48,82 @@
     </nav>
   </header>
 
-    <main>
-      <div class="container-fluid px-0">
-        <div class="hero-section">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-6 hero-content">
-                <h1 class="display-4 fw-bold mb-4">Find Your Perfect Ride</h1>
-                <p class="lead mb-5 fs-5">
-                  Discover the best car rental deals for your next adventure.
-                  Quality vehicles at affordable prices with 24/7 customer
-                  support.
-                </p>
-                <button class="btn btn-primary btn-lg" onclick="viewCars()">
-                  Browse Our Fleet
-                </button>
-              </div>
-              <div class="col-lg-6 booking-form">
-                <div class="booking-card">
-                  <h3 class="mb-4 text-center fw-bold">Book Your Car Now</h3>
-                  <!-- FORM START -->
-                  <form id="generalBooking" class="row g-3">
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0">
-                          <i class="bi bi-geo-alt-fill text-primary"></i>
-                        </span>
-                        <input
-                          id="pickupL"
-                          type="text"
-                          class="form-control border-start-0"
-                          placeholder="Pick-up location"
-                        />
-                      </div>
-                      <p id="pickupL-error"></p>
+  <main>
+    <div class="container-fluid px-0">
+      <div class="hero-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+              <h1 class="display-4 fw-bold mb-4">Find Your Perfect Ride</h1>
+              <p class="lead mb-5 fs-5">
+                Discover the best car rental deals for your next adventure.
+                Quality vehicles at affordable prices with 24/7 customer
+                support.
+              </p>
+              <button class="btn btn-primary btn-lg" onclick="viewCars()">
+                Browse Our Fleet
+              </button>
+            </div>
+            <div class="col-lg-6 booking-form">
+              <div class="booking-card">
+                <h3 class="mb-4 text-center fw-bold">Book Your Car Now</h3>
+                <!-- FORM START -->
+                <form id="generalBooking" class="row g-3">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-geo-alt-fill text-primary"></i>
+                      </span>
+                      <input id="pickupL" type="text" class="form-control border-start-0"
+                        placeholder="Pick-up location" />
                     </div>
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0">
-                          <i class="bi bi-geo-alt-fill text-primary"></i>
-                        </span>
-                        <input
-                          id="dropOffL"
-                          type="text"
-                          class="form-control border-start-0"
-                          placeholder="Drop-off location"
-                        />
-                      </div>
-                      <p id="dropOffL-error"></p>
+                    <p id="pickupL-error"></p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-geo-alt-fill text-primary"></i>
+                      </span>
+                      <input id="dropOffL" type="text" class="form-control border-start-0"
+                        placeholder="Drop-off location" />
                     </div>
+                    <p id="dropOffL-error"></p>
+                  </div>
 
-                    <div class="col-md-6">
-                      <label for="pickUpdate" class="form-label"
-                        >Pick-up Date</label
-                      >
-                      <input
-                        id="pickUpdate"
-                        class="form-control"
-                        type="date"
+                  <div class="col-md-6">
+                    <label for="pickUpdate" class="form-label">Pick-up Date</label>
+                    <input id="pickUpdate" class="form-control" type="date" />
+                    <p id="pickUpdate-error"></p>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="pickUptime" class="form-label">Pick-up Time</label>
+                    <input id="pickUptime" class="form-control" type="time" />
+                    <p id="pickUptime-error"></p>
+                  </div>
 
-                      />
-                      <p id="pickUpdate-error"></p>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="pickUptime" class="form-label"
-                        >Pick-up Time</label
-                      >
-                      <input
-                        id="pickUptime"
-                        class="form-control"
-                        type="time"
-                      />
-                      <p id="pickUptime-error"></p>
-                    </div>
+                  <div class="col-md-6">
+                    <label for="dropOffdate" class="form-label">Drop-off Date</label>
+                    <input id="dropOffdate" class="form-control" type="date" />
+                    <p id="dropOffdate-error"></p>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="dropOfftime" class="form-label">Drop-off Time</label>
+                    <input id="dropOfftime" class="form-control" type="time" />
+                    <p id="dropOfftime-error"></p>
+                  </div>
 
-                    <div class="col-md-6">
-                      <label for="dropOffdate" class="form-label"
-                        >Drop-off Date</label
-                      >
-                      <input
-                        id="dropOffdate"
-                        class="form-control"
-                        type="date"
-                      />
-                      <p id="dropOffdate-error"></p>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="dropOfftime" class="form-label"
-                        >Drop-off Time</label
-                      >
-                      <input
-                        id="dropOfftime"
-                        class="form-control"
-                        type="time"
-                      />
-                      <p id="dropOfftime-error"></p>
-                    </div>
-
-                    <div class="col-12 mt-4">
-                      <button
-                        id="findCarbtn"
-                        class="find-button w-100"
-                        type="submit"
-                      >
-                        Find Available Cars
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                  <div class="col-12 mt-4">
+                    <button id="findCarbtn" class="find-button w-100" type="submit">
+                      Find Available Cars
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
     <section class="container my-5 py-5">
       <div class="text-center mb-5">
@@ -239,7 +202,6 @@
             </p>
           </div>
 
-
           <div id="registerForm" class="auth-form d-none w-75">
             <form id="registerFormSubmit">
               <div class="mb-3">
@@ -287,15 +249,13 @@
   <script type="module" src="/Authentication/js/view.js"></script>
 </body>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      function viewCars() {
-        window.location.href = "/CarListings/carlist.html";
-      }
-    </script>
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+<script>
+  function viewCars() {
+    window.location.href = "/CarListings/carlist.html";
+  }
+</script>
+</body>
+
 </html>
