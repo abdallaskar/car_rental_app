@@ -46,6 +46,5 @@ export function InitializeStaticCars(handleCar) {
     handleCar.addCar(car2);
     handleCar.addCar(car3);
     handleCar.addCar(car4);
-    handleCar.markCarAsBooked(2);
   }
 }
