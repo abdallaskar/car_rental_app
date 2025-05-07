@@ -2,22 +2,22 @@ import {
   renderCarsTable,
   renderDashboardStats,
   renderBookingsTable,
+  validateCarForm,
 } from "./utils.js";
 import handleCar from "../../CarListings/JS/controller-instance.js";
 import { InitializeStaticCars } from "./adminController.js";
+import handleBook from "../../Booking/JS/bookingController-instance.js";
 
 // DOM Elements
 const sidebarToggle = document.getElementById("sidebarToggle");
 const sidebar = document.querySelector(".sidebar");
 const mainContent = document.querySelector(".main-content");
 const navLinks = document.querySelectorAll(".sidebar .nav-link");
-const sections = document.querySelectorAll(".container-fluid");
+const sections = document.querySelectorAll(".main-content > .container-fluid");
 const totalCarsElement = document.getElementById("totalCars");
 const availableCarsElement = document.getElementById("availableCars");
 const bookedCarsElement = document.getElementById("bookedCars");
-const recentActivityTable = document
-  .getElementById("recentActivity")
-  .querySelector("tbody");
+
 const carsTable = document.getElementById("carsTable").querySelector("tbody");
 const bookingsTable = document
   .getElementById("bookingsTable")
@@ -29,26 +29,6 @@ const updateCarBtn = document.getElementById("updateCarBtn");
 InitializeStaticCars(handleCar);
 
 // Sample data for bookings (in a real app, this would come from a database)
-const bookings = [
-  {
-    id: 1,
-    carId: 2,
-    customer: "John Doe",
-    startDate: "2023-11-01",
-    endDate: "2023-11-05",
-    totalPrice: 1500,
-    status: "Active",
-  },
-  {
-    id: 2,
-    carId: 3,
-    customer: "Jane Smith",
-    startDate: "2023-11-10",
-    endDate: "2023-11-15",
-    totalPrice: 1250,
-    status: "Completed",
-  },
-];
 
 // Initialize the dashboard
 document.addEventListener("DOMContentLoaded", function () {
@@ -63,9 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
   renderCarsTable(handleCar, carsTable);
 
   // Load bookings table
-  renderBookingsTable(handleCar, bookingsTable, bookings);
-  // Load recent activity
-  loadRecentActivity();
+  renderBookingsTable(handleBook, bookingsTable);
+
+  // Initialize charts
+  window.updateCharts(handleCar);
 
   // Set up event listeners
   setupEventListeners();
@@ -81,31 +62,6 @@ carsTable.addEventListener("click", function (e) {
     deleteCar(carId);
   }
 });
-
-function loadRecentActivity() {
-  recentActivityTable.innerHTML = "";
-  // Sample recent activity (in a real app, this would come from a database)
-  const activities = [
-    { car: "Toyota Camry", status: "Booked", time: "2 hours ago" },
-    { car: "Honda Civic", status: "Returned", time: "1 day ago" },
-    { car: "Ford Mustang", status: "Available", time: "2 days ago" },
-  ];
-  activities.forEach((activity) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${activity.car}</td>
-      <td><span class="badge ${
-        activity.status === "Booked"
-          ? "bg-danger"
-          : activity.status === "Returned"
-          ? "bg-success"
-          : "bg-primary"
-      }">${activity.status}</span></td>
-      <td>${activity.time}</td>
-    `;
-    recentActivityTable.appendChild(row);
-  });
-}
 
 function setupEventListeners() {
   // Sidebar toggle for mobile
@@ -145,6 +101,11 @@ function setupEventListeners() {
     const image = document.getElementById("carImage").value;
     const description = document.getElementById("carDescription").value;
 
+    // Validate form
+    if (!validateCarForm(brand, model, price, year, false)) {
+      return;
+    }
+
     // Generate a new ID
     const newId =
       Math.max(...handleCar.getAllCars().map((car) => car.car_id), 0) + 1;
@@ -168,7 +129,6 @@ function setupEventListeners() {
       document.getElementById("addCarForm").reset();
 
       // Update UI
-      bookedCarsElement;
       renderDashboardStats(
         handleCar,
         totalCarsElement,
@@ -176,6 +136,8 @@ function setupEventListeners() {
         bookedCarsElement
       );
       renderCarsTable(handleCar, carsTable);
+      // Update charts
+      window.updateCharts(handleCar);
       // Show success message
       alert("Car added successfully!");
     } catch (error) {
@@ -194,6 +156,11 @@ function setupEventListeners() {
     const image = document.getElementById("editCarImage").value;
     const description = document.getElementById("editCarDescription").value;
     const status = document.getElementById("editCarStatus").checked;
+
+    // Validate form
+    if (!validateCarForm(brand, model, price, year, true)) {
+      return;
+    }
 
     const car = handleCar.findCarById(id);
     if (car) {
@@ -223,9 +190,8 @@ function setupEventListeners() {
         bookedCarsElement
       );
       renderCarsTable(handleCar, carsTable);
-
-      // Show success message
-      alert("Car updated successfully!");
+      // Update charts
+      window.updateCharts(handleCar);
     }
   });
 }
@@ -261,5 +227,65 @@ function deleteCar(carId) {
     );
     renderCarsTable(handleCar, carsTable);
     alert("Car deleted successfully!");
+  }
+}
+
+// Add event listeners to view and cancel bookings
+bookingsTable.addEventListener("click", function (e) {
+  const target = e.target;
+  const bookingId = parseInt(target.getAttribute("data-id"));
+  if (target.classList.contains("view-booking")) {
+    viewBooking(bookingId);
+  } else if (target.classList.contains("cancel-booking")) {
+    cancelBooking(bookingId);
+  }
+});
+
+function viewBooking(bookingId) {
+  const booking = handleBook
+    .getAllBookings()
+    .find((b) => b.bookingId === bookingId);
+  if (booking) {
+    // Example: Show booking details in a modal (you can customize this)
+    const car = handleCar.findCarById(booking.carId);
+    alert(`
+      Booking ID: ${booking.bookingId}
+      Customer: ${booking.firstName} ${booking.lastName}
+      Car: ${car ? `${car.brand} ${car.model}` : "Car not found"}
+      Pickup: ${booking.pickupLocation}, ${booking.pickupDate} at ${
+      booking.pickupTime
+    }
+      Dropoff: ${booking.dropoffLocation}, ${booking.dropoffDate} at ${
+      booking.dropoffTime
+    }
+      Email: ${booking.email}
+      Phone: ${booking.phoneNumber}
+    `);
+  }
+}
+
+function cancelBooking(bookingId) {
+  if (confirm("Are you sure you want to cancel this booking?")) {
+    handleBook.removeBooking(bookingId);
+    // Update car status to available
+    const booking = handleBook
+      .getAllBookings()
+      .find((b) => b.bookingId === bookingId);
+    if (booking) {
+      const car = handleCar.findCarById(booking.carId);
+      if (car) {
+        car.setBooked(false);
+        handleCar.saveCarsToStorage();
+      }
+    }
+    // Refresh UI
+    renderBookingsTable(handleBook, bookingsTable);
+    renderDashboardStats(
+      handleCar,
+      totalCarsElement,
+      availableCarsElement,
+      bookedCarsElement
+    );
+    alert("Booking cancelled successfully!");
   }
 }

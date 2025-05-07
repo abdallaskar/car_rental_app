@@ -1,12 +1,11 @@
-
-
-export class User {
-
-    constructor(userId, name, email, passwrod) {
-        this.userId = userId;
-        this.name = name;
-        this.email = email;
-        this.passwrod = passwrod;
-    }
-
+class User {
+  constructor(id, name, email, password, isAdmin = false) {
+    this.userId = id;
+    this.userName = name;
+    this.email = email;
+    this.password = password;
+    this.isAdmin = isAdmin;
+  }
 }
+
+export default User;

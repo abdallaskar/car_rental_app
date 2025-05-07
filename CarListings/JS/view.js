@@ -1,24 +1,40 @@
-import { renderAllCars, sortCarsByRentalPrice, sortCarsByRentalPriceDes } from "./utils.js";
+import {
+  renderAllCars,
+  sortCarsByRentalPrice,
+  sortCarsByRentalPriceDes,
+} from "./utils.js";
 import handleCar from "./controller-instance.js";
+import { navigateToBooking } from "../../Booking/JS/utils.js";
 
 // Select elements using dom
-const mainContainer = document.querySelector("#mainCarContainer #cardContainer");
+const mainContainer = document.querySelector(
+  "#mainCarContainer #cardContainer"
+);
 const dropDownSort = document.querySelectorAll(".dropdown #sortSelect");
-const dropDownAvailable = document.querySelectorAll(".dropdown #Availability_dropdown");
-const dropDownType = document.querySelectorAll(".dropdown #typeSelect")
+const dropDownAvailable = document.querySelectorAll(
+  ".dropdown #Availability_dropdown"
+);
+const dropDownType = document.querySelectorAll(".dropdown #typeSelect");
 const searchInput = document.querySelector(".form .search-input");
 const searchButton = document.querySelector(".form .search_btn");
-// global array to save cars desplay on the screan 
+// global array to save cars desplay on the screan
 let carsOnDisaplayNow = handleCar.getAllCars() || [];
-
 
 // Render initial cars
 renderAllCars(handleCar.getAllCars(), mainContainer);
 
-// Search by barnd name of car
+// ADDED EVENTLISTENER ON THE BOOKNOW BUTTON AND GETTING CAR ID USING CUSTOM DATA ATTRIBUTE.
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("bookbtn")) {
+    const carId = parseInt(event.target.getAttribute("data-car-id")); //converts the id as a string --> integer
+    navigateToBooking(carId);
+  }
+});
+
+// Search by type of car
 searchButton.addEventListener("click", (event) => {
   event.preventDefault();
-  const searchValue = searchInput.value.toLowerCase();
+  const searchValue = searchInput.value.toLowerCase().trim();
   // searchInput.value = "";
   const filteredCars = handleCar.getCarsByName(searchValue);
   carsOnDisaplayNow = filteredCars;
@@ -41,8 +57,7 @@ dropDownSort.forEach((select) => {
   });
 });
 
-
-//show by types of cars 
+//show by types of cars
 dropDownType.forEach((select) => {
   select.addEventListener("click", (event) => {
     const selectedValue = event.target.value;
@@ -58,18 +73,15 @@ dropDownType.forEach((select) => {
       const SUV = handleCar.getCarsBytype("SUV");
       carsOnDisaplayNow = SUV;
       renderAllCars(SUV, mainContainer);
-    }
-    else if (selectedValue === "4") {
+    } else if (selectedValue === "4") {
       const coupe = handleCar.getCarsBytype("coupe");
       carsOnDisaplayNow = coupe;
       renderAllCars(coupe, mainContainer);
-    }
-    else if (selectedValue === "5") {
+    } else if (selectedValue === "5") {
       const hatchback = handleCar.getCarsBytype("hatchback");
       carsOnDisaplayNow = hatchback;
       renderAllCars(hatchback, mainContainer);
-    }
-    else if (selectedValue === "6") {
+    } else if (selectedValue === "6") {
       const convertible = handleCar.getCarsBytype("convertible");
       carsOnDisaplayNow = convertible;
       renderAllCars(convertible, mainContainer);
@@ -109,13 +121,15 @@ dropDownAvailable.forEach((select) => {
 function bookCar(carId) {
   handleCar.markCarAsBooked(carId);
   window.open("../../Booking/booking.html");
-
 }
 
 // Add event listener to the Book Now button (assuming modal is dynamically created)
-document.addEventListener('click', function (event) {
-  if (event.target.classList.contains('btn-primary') && event.target.id.startsWith('bookNowBtn_')) {
-    const carId = event.target.getAttribute('data-car-id');
+document.addEventListener("click", function (event) {
+  if (
+    event.target.classList.contains("btn-primary") &&
+    event.target.id.startsWith("bookNowBtn_")
+  ) {
+    const carId = event.target.getAttribute("data-car-id");
     bookCar(carId);
   }
 });

@@ -72,7 +72,7 @@ class Controller {
 
   // Method to remove a car object from the array by ID
   removeCar(car_id) {
-    const index = this.cars.findIndex((element) => element.car_id === String(car_id));
+    const index = this.cars.findIndex((element) => element.car_id === car_id);
     if (index !== -1) {
       this.cars.splice(index, 1);
       this.saveCarsToStorage(); // Save to localStorage after removing
@@ -85,14 +85,12 @@ class Controller {
   }
 
   markCarAsBooked(car_id) {
-
-    const index = this.cars.findIndex(item => item.car_id == car_id);
+    const index = this.cars.findIndex((item) => item.car_id == car_id);
     console.log(index);
     if (index !== -1) {
       this.cars[index].setBooked(true);
       this.saveCarsToStorage(); // Save to localStorage after marking as booked
-    }
-    else {
+    } else {
       console.log("this id not found index");
     }
   }
@@ -123,6 +121,5 @@ class Controller {
   getCarsNotAvalible() {
     return this.cars.filter((element) => element.booked);
   }
-
 }
 export default Controller;

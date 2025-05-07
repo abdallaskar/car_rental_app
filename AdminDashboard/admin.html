@@ -9,6 +9,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="../CarListings/CSS/global.css" />
   <link rel="stylesheet" href="CSS/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -46,9 +48,7 @@
             <i class="bi bi-list"></i>
           </button>
           <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="#"><i class="bi bi-bell"></i></a>
-            <a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Admin</a>
-            <a class="nav-link" href="carlist.html"><i class="bi bi-box-arrow-right"></i> Back to Site</a>
+            <a class="nav-link" href="/home.html"><i class="bi bi-box-arrow-right"></i> Back to Site</a>
           </div>
         </div>
       </nav>
@@ -85,28 +85,27 @@
           </div>
         </div>
 
-        <!-- Recent Activity -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5>Recent Activity</h5>
+        <!-- Charts Section -->
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Car Distribution</h5>
+                <canvas id="carDistributionChart"></canvas>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table" id="recentActivity">
-                <thead>
-                  <tr>
-                    <th>Car</th>
-                    <th>Status</th>
-                    <th>Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Will be populated by JavaScript -->
-                </tbody>
-              </table>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Booking Trends</h5>
+                <canvas id="bookingTrendsChart"></canvas>
+              </div>
             </div>
           </div>
         </div>
+
+
       </div>
 
       <!-- Manage Cars Section -->
@@ -188,10 +187,12 @@
               <div class="col-md-6 mb-3">
                 <label for="carBrand" class="form-label">Brand</label>
                 <input type="text" class="form-control" id="carBrand" required />
+                <p id="carBrandError" class="d-none text-danger"></p>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="carModel" class="form-label">Model</label>
                 <input type="text" class="form-control" id="carModel" required />
+                <p id="carModelError" class="d-none text-danger"></p>
               </div>
             </div>
             <div class="row">
@@ -208,16 +209,19 @@
               <div class="col-md-6 mb-3">
                 <label for="carYear" class="form-label">Year</label>
                 <input type="number" class="form-control" id="carYear" required />
+                <p id="carYearError" class="d-none text-danger"></p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="carPrice" class="form-label">Rental Price (per day)</label>
                 <input type="number" class="form-control" id="carPrice" required />
+                <p id="carPriceError" class="d-none text-danger"></p>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="carImage" class="form-label">Image URL</label>
                 <input type="text" class="form-control" id="carImage" required />
+                <p id="carImageError" class="d-none text-danger"></p>
               </div>
             </div>
             <div class="mb-3">
@@ -253,10 +257,12 @@
               <div class="col-md-6 mb-3">
                 <label for="editCarBrand" class="form-label">Brand</label>
                 <input type="text" class="form-control" id="editCarBrand" required />
+                <p id="editCarBrandError" class="d-none text-danger"></p>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="editCarModel" class="form-label">Model</label>
                 <input type="text" class="form-control" id="editCarModel" required />
+                <p id="editCarModelError" class="d-none text-danger"></p>
               </div>
             </div>
             <div class="row">
@@ -273,12 +279,14 @@
               <div class="col-md-6 mb-3">
                 <label for="editCarYear" class="form-label">Year</label>
                 <input type="number" class="form-control" id="editCarYear" required />
+                <p id="editCarYearError" class="d-none text-danger"></p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="editCarPrice" class="form-label">Rental Price (per day)</label>
                 <input type="number" class="form-control" id="editCarPrice" required />
+                <p id="editCarPriceError" class="d-none text-danger"></p>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="editCarImage" class="form-label">Image URL</label>
@@ -308,7 +316,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="JS/script.js" type="module"></script>
+  <script src="./JS/chart.js"></script>
+  <script src="./JS/script.js" type="module"></script>
 </body>
 
 </html>

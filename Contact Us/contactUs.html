@@ -1,154 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - Car Rental</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="contactUs.css" />
-    <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-      <div class="container">
-        <a class="navbar-brand" href="/home.html">
-          <img
-            src="/Authentication/imgs/logo3.jpg"
-            alt="Car Rental Logo"
-            class="img-fluid"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="/home.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Car List</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Contact Us/contactUs.html"
-                >Contact Us</a
-              >
-            </li>
-          </ul>
-          <div class="d-flex">
-            <a href="/Authentication/login.html" class="btn btn-outline-primary"
-              >Login/Register</a
-            >
-          </div>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - Car Rental</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="contactUs.css" />
+  <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand" href="/home.html">
+        <img src="/Authentication/imgs/logo3.jpg" alt="Car Rental Logo" class="img-fluid" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/CarListings/carlist.html">Car List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Contact Us/contactUs.html">Contact Us</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- Contact Page Content -->
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-lg-6">
-          <h2 class="mb-4">Contact Us</h2>
-          <p>
-            Have questions or need assistance? Fill out the form below and we'll
-            get back to you as soon as possible.
-          </p>
+  <!-- Contact Page Content -->
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="mb-4">Contact Us</h2>
+        <p>
+          Have questions or need assistance? Fill out the form below and we'll
+          get back to you as soon as possible.
+        </p>
 
-          <!-- Contact Form -->
-          <form id="contactForm" novalidate>
-            <div class="mb-3">
-              <label for="name" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="name" required />
-              <div class="invalid-feedback">
-                Name must be at least 7 characters (letters only)
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="email" required />
-              <div class="invalid-feedback">
-                Please enter a valid email address
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="phone" class="form-label"
-                >Phone Number (optional)</label
-              >
-              <input type="tel" class="form-control" id="phone" />
-            </div>
-            <div class="mb-3">
-              <label for="subject" class="form-label">Subject</label>
-              <select class="form-select" id="subject" required>
-                <option value="" selected disabled>Select a subject</option>
-                <option value="booking">Booking Inquiry</option>
-                <option value="support">Technical Support</option>
-                <option value="feedback">Feedback</option>
-                <option value="other">Other</option>
-              </select>
-              <div class="invalid-feedback">Please select a subject</div>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea
-                class="form-control"
-                id="message"
-                rows="5"
-                required
-              ></textarea>
-              <div class="invalid-feedback">
-                Message must be at least 12 characters long
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
-        </div>
-
-        <div class="col-lg-6">
-          <!-- Contact Information -->
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Our Office</h5>
-              <address>
-                <strong>CarRental Headquarters</strong><br />
-                123 Rental Avenue<br />
-                Cityville, ST 12345<br />
-                United States
-              </address>
-              <ul class="list-unstyled">
-                <li><i class="bi bi-telephone"></i> Phone: (123) 456-7890</li>
-                <li>
-                  <i class="bi bi-envelope"></i> Email: info@carrental.com
-                </li>
-                <li><i class="bi bi-clock"></i> Hours: Mon-Fri 9am-6pm</li>
-              </ul>
+        <!-- Contact Form -->
+        <form id="contactForm" novalidate>
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" required />
+            <div class="invalid-feedback">
+              Name must be at least 7 characters (letters only)
             </div>
           </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" required />
+            <div class="invalid-feedback">
+              Please enter a valid email address
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number (optional)</label>
+            <input type="tel" class="form-control" id="phone" />
+          </div>
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <select class="form-select" id="subject" required>
+              <option value="" selected disabled>Select a subject</option>
+              <option value="booking">Booking Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="feedback">Feedback</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select a subject</div>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="5" required></textarea>
+            <div class="invalid-feedback">
+              Message must be at least 12 characters long
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
 
-          <!-- Static Map Integration -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Find Us</h5>
-              <div class="map-container ratio ratio-16x9">
-                <!-- Static Google Map Image -->
-                <!-- <img
+      <div class="col-lg-6">
+        <!-- Contact Information -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Our Office</h5>
+            <address>
+              <strong>CarRental Headquarters</strong><br />
+              123 Rental Avenue<br />
+              Cityville, ST 12345<br />
+              United States
+            </address>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-telephone"></i> Phone: (123) 456-7890</li>
+              <li>
+                <i class="bi bi-envelope"></i> Email: info@carrental.com
+              </li>
+              <li><i class="bi bi-clock"></i> Hours: Mon-Fri 9am-6pm</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Static Map Integration -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Find Us</h5>
+            <div class="map-container ratio ratio-16x9">
+              <!-- Static Google Map Image -->
+              <!-- <img
                   src="https://maps.googleapis.com/maps/api/staticmap?center=40.7128,-74.0060&zoom=14&size=600x300&maptype=roadmap&markers=color:red%7C40.7128,-74.0060&key=YOUR_API_KEY"
                   alt="Our Location"
                   class="img-fluid rounded"
                 /> -->
-                <div class="map-overlay">
+              <!-- <div class="map-overlay">
                   <a
                     href="https://www.google.com/maps?q=40.7128,-74.0060"
                     target="_blank"
@@ -156,23 +129,27 @@
                   >
                     Open in Google Maps
                   </a>
-                </div>
-              </div>
+                </div> -->
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d718.656692199614!2d31.354712309098794!3d31.039436409151094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1745950780511!5m2!1sen!2seg"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <!-- Footer -->
+  <footer class="text-center bg-dark text-white py-4">
+    <div class="container">
+      <p>&copy; 2025 CarRental System. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-      <div class="container text-center">
-        <p>&copy; 2025 CarRental System. All rights reserved.</p>
-      </div>
-    </footer>
+  <!-- Bootstrap & JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="contactUs.js"></script>
+</body>
 
-    <!-- Bootstrap & JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="contactUs.js"></script>
-  </body>
 </html>
