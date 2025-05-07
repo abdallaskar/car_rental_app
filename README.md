@@ -7,6 +7,9 @@ listings, reservations, and user data efficiently.
 
 ---
 
+![image](https://github.com/user-attachments/assets/32df54f2-1afb-477e-9d6e-c8c87ba3d4eb)
+
+
 ## 🎯 Objective
 Build a client-side car rental platform that enables:
 - Customers to explore available cars and make reservations.
