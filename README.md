@@ -7,8 +7,6 @@ listings, reservations, and user data efficiently.
 
 ---
 
-![image](https://github.com/user-attachments/assets/32df54f2-1afb-477e-9d6e-c8c87ba3d4eb)
-
 
 ## 🎯 Objective
 Build a client-side car rental platform that enables:
@@ -16,8 +14,6 @@ Build a client-side car rental platform that enables:
 - Admins to manage the car fleet, track bookings, and maintain user records through an intuitive dashboard.
 
 ---
-
-![image](https://github.com/user-attachments/assets/c2a40fef-8275-4818-9477-6b1fe2d1a343)
 
 
 ## 🚀 Key Features
