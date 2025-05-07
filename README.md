@@ -14,6 +14,9 @@ Build a client-side car rental platform that enables:
 
 ---
 
+![image](https://github.com/user-attachments/assets/c2a40fef-8275-4818-9477-6b1fe2d1a343)
+
+
 ## 🚀 Key Features
 
 ### 🔐 User Authentication
