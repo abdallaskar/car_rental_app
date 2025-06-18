@@ -1,135 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Car list</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="CSS/global.css" />
-    <link rel="stylesheet" href="CSS/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car list</title>
 
-    <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
-    <link rel="stylesheet" href="../Booking/booking.css" />
-  </head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="CSS/global.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
 
-  <body>
-    <!-- main nave bar for home -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm p-0">
-      <div class="container">
-        <a class="navbar-brand" href="/home.html">
-          <img
-            src="/Authentication/imgs/logo3.jpg"
-            alt="Car Rental Logo"
-            class="img-fluid"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="/home.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Car List</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Contact Us/contactUs.html"
-                >Contact Us</a
-              >
-            </li>
-          </ul>
-        </div>
+  <link rel="stylesheet" href="/Authentication/css/homeStyle.css" />
+  <link rel="stylesheet" href="../Booking/booking.css" />
+</head>
+
+<body>
+  <!-- main nave bar for home -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm p-0">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html">
+        <img src="/Authentication/imgs/logo3.jpg" alt="Car Rental Logo" class="img-fluid" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Car List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Contact Us/contactUs.html">Contact Us</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-    <!-- second nav var for searching,sorting,type, and avaliblity -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-0">
-      <div class="container">
-        <!-- <a class="navbar-brand" href="#">My Store</a> -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-between align-items-center"
-          id="navbarContent"
-        >
-          <form class="d-flex mx-3 form" role="search">
-            <input
-              class="form-control me-2 search-input"
-              type="search"
-              placeholder="Search by car barnd name"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-primary search_btn" type="submit">
-              Search
-            </button>
-          </form>
-          <div class="dropdown mx-3">
-            <select class="form-select" id="sortSelect" aria-label="Sort by">
-              <option selected disabled>Sort by</option>
-              <option value="1">Price: Low to High</option>
-              <option value="2">Price: High to Low</option>
-            </select>
-          </div>
-          <div class="dropdown mx-3" style="width: 200px">
-            <select class="form-select" id="typeSelect" aria-label="Car type">
-              <option selected disabled>Car type</option>
-              <option value="1">All types</option>
-              <option value="2">Sedan</option>
-              <option value="3">SUV</option>
-              <option value="4">Coupe</option>
-              <option value="5">Hatchback</option>
-              <option value="6">Convertible</option>
-            </select>
-          </div>
-
-          <div class="dropdown mx-3">
-            <select
-              class="form-select"
-              id="Availability_dropdown"
-              aria-label="Availability"
-            >
-              <option selected disabled>Availability</option>
-              <option value="1">All Cars</option>
-              <option value="2">Available Cars</option>
-              <option value="3">Not Available Cars</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Cards Section -->
-    <div id="mainCarContainer" class="container my-4">
-      <div id="cardContainer" class="row g-4"></div>
     </div>
+  </nav>
+  <!-- second nav var for searching,sorting,type, and avaliblity -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-0">
+    <div class="container">
+      <!-- <a class="navbar-brand" href="#">My Store</a> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarContent">
+        <form class="d-flex mx-3 form" role="search">
+          <input class="form-control me-2 search-input" type="search" placeholder="Search by car barnd name"
+            aria-label="Search" />
+          <button class="btn btn-outline-primary search_btn" type="submit">
+            Search
+          </button>
+        </form>
+        <div class="dropdown mx-3">
+          <select class="form-select" id="sortSelect" aria-label="Sort by">
+            <option selected disabled>Sort by</option>
+            <option value="1">Price: Low to High</option>
+            <option value="2">Price: High to Low</option>
+          </select>
+        </div>
+        <div class="dropdown mx-3" style="width: 200px">
+          <select class="form-select" id="typeSelect" aria-label="Car type">
+            <option selected disabled>Car type</option>
+            <option value="1">All types</option>
+            <option value="2">Sedan</option>
+            <option value="3">SUV</option>
+            <option value="4">Coupe</option>
+            <option value="5">Hatchback</option>
+            <option value="6">Convertible</option>
+          </select>
+        </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-      crossorigin="anonymous"
-    ></script>
-    <script src="JS/view.js" type="module"></script>
-  </body>
+        <div class="dropdown mx-3">
+          <select class="form-select" id="Availability_dropdown" aria-label="Availability">
+            <option selected disabled>Availability</option>
+            <option value="1">All Cars</option>
+            <option value="2">Available Cars</option>
+            <option value="3">Not Available Cars</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cards Section -->
+  <div id="mainCarContainer" class="container my-4">
+    <div id="cardContainer" class="row g-4"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+  <script src="JS/view.js" type="module"></script>
+</body>
+
 </html>

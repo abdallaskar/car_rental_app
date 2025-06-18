@@ -1,7 +1,6 @@
-export function popupModal(id,data){
-
-   let element = document.getElementById(id);
-   element.innerHTML=`
+export function popupModal(id, data) {
+  let element = document.getElementById(id);
+  element.innerHTML = `
    <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content align-items-center">
@@ -24,15 +23,15 @@ export function popupModal(id,data){
       </div>
     </div>
   </div>`;
-  const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    myModal.show();
-    document.getElementById('modalCloseBtn').addEventListener('click', () => {
-      window.location.href = "../../home.html";
-    });
+  const myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+  myModal.show();
+  document.getElementById("modalCloseBtn").addEventListener("click", () => {
+    window.location.href = "../../index.html";
+  });
 }
-  
- // BOOKING FUNCTIONALITY .
- export function navigateToBooking(car_id) {
+
+// BOOKING FUNCTIONALITY .
+export function navigateToBooking(car_id) {
   if (car_id) {
     sessionStorage.setItem("bookedCarId", JSON.stringify(car_id));
     window.location.href = "../Booking/booking.html";
@@ -41,6 +40,6 @@ export function popupModal(id,data){
   }
 }
 // END OF BOOKING FUNCTIONALITY.
-export function changeCar(){
-  window.location.href="../../CarListings/carlist.html"; 
+export function changeCar() {
+  window.location.href = "../../CarListings/carlist.html";
 }
